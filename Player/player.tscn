@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://h8u7bc7iniob"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_r2qib"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_nippp"]
+
+[node name="Player" type="CharacterBody3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_r2qib")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_nippp")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.906308, 0.422618, 0, -0.422618, 0.906308, 0, 2, 4)
