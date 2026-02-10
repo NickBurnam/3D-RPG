@@ -1,10 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://h8u7bc7iniob"]
+[gd_scene load_steps=4 format=3 uid="uid://h8u7bc7iniob"]
+
+[ext_resource type="Script" path="res://Player/player.gd" id="1_a2ujk"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_r2qib"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_nippp"]
 
 [node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_a2ujk")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_r2qib")
