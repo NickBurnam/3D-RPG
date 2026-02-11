@@ -12,7 +12,7 @@ var _look:Vector2 = Vector2.ZERO
 @export var min_boundary:float = -60.0 #degrees
 @export var max_boundary:float = 10.0 #degrees
 
-@onready var spring_arm_3d: SpringArm3D = $SpringArm3D
+@onready var smooth_camera_arm: SpringArm3D = $SmoothCameraArm
 @onready var horizontal_pivot: Node3D = $HorizontalPivot
 @onready var vertical_pivot: Node3D = $HorizontalPivot/VerticalPivot
 
@@ -64,7 +64,7 @@ func frame_camera_rotation() -> void:
 	vertical_pivot.rotation.x = clampf(vertical_pivot.rotation.x,deg_to_rad(min_boundary),deg_to_rad(max_boundary))
 	
 	# Apply the result to the spring arm
-	spring_arm_3d.global_transform = vertical_pivot.global_transform
+	#spring_arm_3d.global_transform = vertical_pivot.global_transform
 	
 	# Reset the _look vector for the next calculation
 	_look = Vector2.ZERO

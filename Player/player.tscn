@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://h8u7bc7iniob"]
+[gd_scene load_steps=6 format=3 uid="uid://h8u7bc7iniob"]
 
 [ext_resource type="Script" path="res://Player/player.gd" id="1_a2ujk"]
+[ext_resource type="Script" path="res://Player/SmoothCameraArm.gd" id="2_fti2y"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_r2qib"]
 
@@ -17,12 +18,14 @@ shape = SubResource("CapsuleShape3D_r2qib")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_nippp")
 
-[node name="SpringArm3D" type="SpringArm3D" parent="."]
+[node name="SmoothCameraArm" type="SpringArm3D" parent="." node_paths=PackedStringArray("target")]
 transform = Transform3D(1, 0, 0, 0, 0.906308, 0.422618, 0, -0.422618, 0.906308, 0, 0, 0)
 shape = SubResource("SeparationRayShape3D_hgwvm")
 spring_length = 4.0
+script = ExtResource("2_fti2y")
+target = NodePath("../HorizontalPivot/VerticalPivot")
 
-[node name="Camera3D" type="Camera3D" parent="SpringArm3D"]
+[node name="Camera3D" type="Camera3D" parent="SmoothCameraArm"]
 
 [node name="HorizontalPivot" type="Node3D" parent="."]
 
