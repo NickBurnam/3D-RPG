@@ -1,11 +1,20 @@
 extends CharacterBody3D
 
-
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
+
+# Stores the X,Y direction the player is trying to look in
+var _look:Vector2 = Vector2.ZERO
+@export var mouse_sensitivity:float = 0.00075
+@export var min_boundary:float = -60.0 #degrees
+@export var max_boundary:float = 10.0 #degrees
+
+@onready var spring_arm_3d: SpringArm3D = $SpringArm3D
+@onready var horizontal_pivot: Node3D = $HorizontalPivot
+@onready var vertical_pivot: Node3D = $HorizontalPivot/VerticalPivot
 
 
 func _ready() -> void:
@@ -13,6 +22,8 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
+	frame_camera_rotation()
+	
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y -= gravity * delta
@@ -37,3 +48,23 @@ func _physics_process(delta: float) -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
+		if event is InputEventMouseMotion:
+			_look += -event.relative * mouse_sensitivity
+
+
+func frame_camera_rotation() -> void:
+	# Rotate about the Y axis (vertical) -> look left and right
+	horizontal_pivot.rotate_y(_look.x)
+	
+	# Rotate about the X axis (horizontal) -> look up and down
+	vertical_pivot.rotate_x(_look.y)
+	
+	# Clamp up and down camera rotation to avoid going upside down
+	vertical_pivot.rotation.x = clampf(vertical_pivot.rotation.x,deg_to_rad(min_boundary),deg_to_rad(max_boundary))
+	
+	# Apply the result to the spring arm
+	spring_arm_3d.global_transform = vertical_pivot.global_transform
+	
+	# Reset the _look vector for the next calculation
+	_look = Vector2.ZERO
