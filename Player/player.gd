@@ -60,6 +60,9 @@ func _unhandled_input(event: InputEvent) -> void:
 	if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 		if event is InputEventMouseMotion:
 			_look += -event.relative * mouse_sensitivity
+	if rig.is_idle():
+		if event.is_action_pressed("click"):
+			slash_attack()
 
 
 func get_movement_direction() -> Vector3:
@@ -95,3 +98,7 @@ func look_toward_direction(direction:Vector3, delta:float) -> void:
 	
 	# Interpolate to the target transform using exp decay function: 1.0 - exp(-decay * delta)
 	rig_pivot.global_transform = rig_pivot.global_transform.interpolate_with(target_transform, 1.0 - exp(-animation_decay * delta))
+
+
+func slash_attack() -> void:
+	rig.travel("Slash")
