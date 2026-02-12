@@ -17,6 +17,7 @@ var _look:Vector2 = Vector2.ZERO
 @onready var horizontal_pivot: Node3D = $HorizontalPivot
 @onready var vertical_pivot: Node3D = $HorizontalPivot/VerticalPivot
 @onready var rig_pivot: Node3D = $RigPivot
+@onready var rig: Node3D = $RigPivot/Rig
 
 
 func _ready() -> void:
@@ -34,7 +35,13 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 	
+	# Get the direction of movement
 	var direction := get_movement_direction()
+	
+	# Update the rig animation tree (idle vs moving)
+	rig.update_animation_tree(direction)
+	
+	# Update the velocity of the player, update rig direction if needed
 	if direction:
 		velocity.x = direction.x * SPEED
 		velocity.z = direction.z * SPEED
