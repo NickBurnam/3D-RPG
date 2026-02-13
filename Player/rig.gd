@@ -1,5 +1,7 @@
 extends Node3D
 
+signal heavy_attack()
+
 @export var animation_speed:float = 10.0
 
 @onready var animation_tree: AnimationTree = $AnimationTree
@@ -41,3 +43,8 @@ func set_active_mesh(active_mesh:MeshInstance3D) -> void:
 	
 	# Set the desired mesh visible
 	active_mesh.visible = true
+
+
+func _on_animation_tree_animation_finished(anim_name: StringName) -> void:
+	if anim_name == "Overhead":
+		heavy_attack.emit()
