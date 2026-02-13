@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://h8u7bc7iniob"]
+[gd_scene load_steps=7 format=3 uid="uid://h8u7bc7iniob"]
 
 [ext_resource type="Script" path="res://Player/player.gd" id="1_a2ujk"]
 [ext_resource type="Script" path="res://Player/SmoothCameraArm.gd" id="2_fti2y"]
 [ext_resource type="PackedScene" uid="uid://dll3md5b5ql3s" path="res://Player/rig.tscn" id="3_e5684"]
+[ext_resource type="Script" path="res://Player/AttackCast.gd" id="4_x0epg"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_r2qib"]
 
@@ -31,3 +32,58 @@ target = NodePath("../HorizontalPivot/VerticalPivot")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 
 [node name="Rig" parent="RigPivot" instance=ExtResource("3_e5684")]
+
+[node name="Skeleton3D" parent="RigPivot/Rig/CharacterRig/GameRig" index="0"]
+bones/0/position = Vector3(1.38451e-14, 0.89944, -0.0481735)
+bones/2/rotation = Quaternion(-0.000318549, -0.000391393, 0.00321422, 0.999995)
+bones/3/rotation = Quaternion(-0.0951022, -0.000362018, 0.00852095, 0.995431)
+bones/4/rotation = Quaternion(0.275854, 1.49379e-08, 9.23069e-08, 0.9612)
+bones/6/rotation = Quaternion(-0.157704, -1.17612e-07, -1.9446e-08, 0.987486)
+bones/7/position = Vector3(-2.09889e-08, 0.89944, -0.0481735)
+bones/8/position = Vector3(-8.13996e-08, 0.89944, -0.0481735)
+bones/9/position = Vector3(0.131144, 0.965644, -0.0351291)
+bones/9/rotation = Quaternion(0.993202, 0.0207828, -0.030991, 0.110261)
+bones/11/rotation = Quaternion(0.417226, -0.000700259, 0.000321625, 0.908803)
+bones/13/rotation = Quaternion(-0.750294, 0.0118809, 0.0243977, 0.660547)
+bones/15/position = Vector3(-0.131144, 0.965644, -0.0351291)
+bones/15/rotation = Quaternion(0.973544, -0.00571676, 0.0273676, 0.226784)
+bones/17/rotation = Quaternion(0.441402, 0.00327478, -0.00161104, 0.897302)
+bones/19/rotation = Quaternion(-0.686934, -0.0281859, -0.000824498, 0.726172)
+bones/21/position = Vector3(0.0251286, 1.42953, 0.0432924)
+bones/21/rotation = Quaternion(-0.488797, -0.259869, -0.403328, 0.728609)
+bones/22/position = Vector3(0.189103, 1.46681, -0.0212074)
+bones/22/rotation = Quaternion(0.0444156, -0.160527, 0.974705, -0.149026)
+bones/23/rotation = Quaternion(4.66296e-08, -0.0203745, 3.42599e-08, 0.999792)
+bones/24/rotation = Quaternion(0.309117, -0.0203753, -0.0190512, 0.950615)
+bones/46/position = Vector3(-0.0113635, 1.42953, 0.0432924)
+bones/46/rotation = Quaternion(-0.504102, 0.228447, 0.381971, 0.740129)
+bones/47/position = Vector3(-0.169206, 1.46732, -0.0347882)
+bones/47/rotation = Quaternion(-0.0638041, -0.138816, 0.974026, 0.167133)
+bones/48/rotation = Quaternion(-6.48102e-08, 0.0213556, -1.18062e-07, 0.999772)
+bones/49/rotation = Quaternion(0.343499, 0.0213561, 0.028999, 0.938462)
+bones/71/position = Vector3(0.127191, 1.34845, -0.0260016)
+bones/71/rotation = Quaternion(1.95001e-08, 0.610254, 0.792206, -4.6314e-08)
+bones/72/position = Vector3(-0.113426, 1.34845, -0.0260016)
+bones/72/rotation = Quaternion(1.95012e-08, 0.61024, 0.792217, -4.63131e-08)
+
+[node name="RightHandBone" parent="RigPivot/Rig" index="2"]
+transform = Transform3D(-0.962343, -0.2708, -0.0237176, 0.237533, -0.880123, 0.411048, -0.132186, 0.389936, 0.911305, -0.343024, 0.988228, -0.0178739)
+
+[node name="LeftHandBone" parent="RigPivot/Rig" index="3"]
+transform = Transform3D(-0.970523, 0.239072, 0.0304802, -0.219309, -0.928499, 0.299655, 0.09994, 0.284138, 0.95356, 0.345905, 0.975075, -0.0404224)
+
+[node name="RayAttachment" type="BoneAttachment3D" parent="RigPivot/Rig"]
+transform = Transform3D(-0.962343, -0.2708, -0.0237176, 0.237533, -0.880123, 0.411048, -0.132186, 0.389936, 0.911305, -0.343024, 0.988228, -0.0178739)
+bone_name = "DEF-hand.R"
+bone_idx = 51
+use_external_skeleton = true
+external_skeleton = NodePath("../CharacterRig/GameRig/Skeleton3D")
+
+[node name="AttackCast" type="RayCast3D" parent="RigPivot/Rig/RayAttachment"]
+unique_name_in_owner = true
+transform = Transform3D(-3.8097e-09, 4.35451e-08, 1, 0.996196, 0.0871558, -4.42399e-16, -0.0871559, 0.996195, -4.37115e-08, -0.03, 0.075, -0.05)
+target_position = Vector3(0, 1, 0)
+script = ExtResource("4_x0epg")
+
+[editable path="RigPivot/Rig"]
+[editable path="RigPivot/Rig/CharacterRig"]

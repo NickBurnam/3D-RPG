@@ -23,6 +23,7 @@ var _attack_direction:Vector3 = Vector3.ZERO
 @onready var vertical_pivot: Node3D = $HorizontalPivot/VerticalPivot
 @onready var rig_pivot: Node3D = $RigPivot
 @onready var rig: Node3D = $RigPivot/Rig
+@onready var attack_cast: RayCast3D = %AttackCast
 
 
 func _ready() -> void:
@@ -106,6 +107,9 @@ func slash_attack() -> void:
 	if _attack_direction.is_zero_approx():
 		# Rig is facing +z axis
 		_attack_direction = rig.global_basis * Vector3(0,0,1)
+	
+	# Clear the exception list for the next attack
+	attack_cast.clear_exceptions()
 
 
 func handle_idle_physics_frame(delta:float, direction:Vector3) -> void:
@@ -134,3 +138,6 @@ func handle_slashing_physics_frame(delta:float) -> void:
 	
 	# Face the rig to the attack direction
 	look_toward_direction(_attack_direction, delta)
+	
+	# Deal damage
+	attack_cast.deal_damage()
