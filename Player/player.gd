@@ -32,6 +32,16 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	frame_camera_rotation()
 	
+	# Get the direction of movement
+	var direction := get_movement_direction()
+	
+	# Update the rig animation tree (idle vs moving)
+	rig.update_animation_tree(direction)
+	
+	handle_idle_physics_frame(delta, direction)
+	
+	handle_slashing_physics_frame(delta)
+	
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y -= gravity * delta
@@ -39,25 +49,6 @@ func _physics_process(delta: float) -> void:
 	# Handle jump.
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
-	
-	# Get the direction of movement
-	var direction := get_movement_direction()
-	
-	# Update the rig animation tree (idle vs moving)
-	rig.update_animation_tree(direction)
-	
-	# Update the velocity of the player, update rig direction if needed
-	if direction:
-		velocity.x = direction.x * SPEED
-		velocity.z = direction.z * SPEED
-		
-		# Update the Rig to face the direction of movement
-		look_toward_direction(direction, delta)
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		velocity.z = move_toward(velocity.z, 0, SPEED)
-	
-	handle_slashing_physics_frame(delta)
 	
 	move_and_slide()
 
@@ -115,6 +106,22 @@ func slash_attack() -> void:
 	if _attack_direction.is_zero_approx():
 		# Rig is facing +z axis
 		_attack_direction = rig.global_basis * Vector3(0,0,1)
+
+
+func handle_idle_physics_frame(delta:float, direction:Vector3) -> void:
+	if not rig.is_idle():
+		return
+	
+	# Update the velocity of the player, update rig direction if needed
+	if direction:
+		velocity.x = direction.x * SPEED
+		velocity.z = direction.z * SPEED
+		
+		# Update the Rig to face the direction of movement
+		look_toward_direction(direction, delta)
+	else:
+		velocity.x = move_toward(velocity.x, 0, SPEED)
+		velocity.z = move_toward(velocity.z, 0, SPEED)
 
 
 func handle_slashing_physics_frame(delta:float) -> void:
