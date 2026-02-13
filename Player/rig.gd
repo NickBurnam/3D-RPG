@@ -1,8 +1,11 @@
 extends Node3D
 
 @export var animation_speed:float = 10.0
+
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var playback:AnimationNodeStateMachinePlayback = animation_tree["parameters/playback"]
+@onready var skeleton_3d: Skeleton3D = $CharacterRig/GameRig/Skeleton3D
+@onready var villager_meshes:Array[MeshInstance3D] = [$CharacterRig/GameRig/Skeleton3D/Villager_01, $CharacterRig/GameRig/Skeleton3D/Villager_02]
 
 var run_path:String = "parameters/MoveSpace/blend_position"
 var run_weight_target:float = -1.0
@@ -29,3 +32,12 @@ func is_idle() -> bool:
 
 func is_slashing() -> bool:
 	return playback.get_current_node() == "Slash"
+
+
+func set_active_mesh(active_mesh:MeshInstance3D) -> void:
+	# Make all meshes invisible
+	for child in skeleton_3d.get_children():
+		child.visible = false
+	
+	# Set the desired mesh visible
+	active_mesh.visible = true
