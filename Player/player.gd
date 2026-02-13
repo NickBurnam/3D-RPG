@@ -8,10 +8,15 @@ var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 # Stores the X,Y direction the player is trying to look in
 var _look:Vector2 = Vector2.ZERO
+
+# Stores the direction the player moves when attacking
+var _attack_direction:Vector3 = Vector3.ZERO
+
 @export var mouse_sensitivity:float = 0.00075
 @export var min_boundary:float = -60.0 #degrees
 @export var max_boundary:float = 10.0 #degrees
 @export var animation_decay:float = 20.0
+@export var attack_move_speed:float = 3.0
 
 @onready var smooth_camera_arm: SpringArm3D = $SmoothCameraArm
 @onready var horizontal_pivot: Node3D = $HorizontalPivot
@@ -51,6 +56,8 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
+	
+	handle_slashing_physics_frame(delta)
 	
 	move_and_slide()
 
@@ -102,3 +109,21 @@ func look_toward_direction(direction:Vector3, delta:float) -> void:
 
 func slash_attack() -> void:
 	rig.travel("Slash")
+	_attack_direction = get_movement_direction()
+	
+	# When there is no movement, use the current facing direction
+	if _attack_direction.is_zero_approx():
+		# Rig is facing +z axis
+		_attack_direction = rig.global_basis * Vector3(0,0,1)
+
+
+func handle_slashing_physics_frame(delta:float) -> void:
+	if not rig.is_slashing():
+		return
+	
+	# Update the velocity with the attack speed value in the attack direction
+	velocity.x = _attack_direction.x * attack_move_speed
+	velocity.z = _attack_direction.z * attack_move_speed
+	
+	# Face the rig to the attack direction
+	look_toward_direction(_attack_direction, delta)
