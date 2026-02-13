@@ -36,6 +36,10 @@ func is_slashing() -> bool:
 	return playback.get_current_node() == "Slash"
 
 
+func is_overhead() -> bool:
+	return playback.get_current_node() == "Overhead"
+
+
 func set_active_mesh(active_mesh:MeshInstance3D) -> void:
 	# Make all meshes invisible
 	for child in skeleton_3d.get_children():
