@@ -2,13 +2,15 @@ extends CharacterBody3D
 class_name Enemy
 
 @export var max_health:float = 20.0
+@export var xp_value:float = 25.0
+@export var crit_rate:float = 0.05
 
 @onready var rig: Node3D = $RigPivot/Rig
 @onready var health_component: HealthComponent = $HealthComponent
 @onready var collision_shape_3d: CollisionShape3D = $CollisionShape3D
 @onready var player_detector: ShapeCast3D = $RigPivot/Rig/PlayerDetector
 @onready var area_attack: ShapeCast3D = $RigPivot/Rig/AreaAttack
-
+@onready var player:Player = get_tree().get_first_node_in_group("Player")
 
 func _ready() -> void:
 	# Pick from the list of villager meshes
@@ -36,6 +38,9 @@ func check_for_attacks() ->void:
 
 
 func _on_health_component_defeat() -> void:
+	# Increase the player xp
+	player.stats.xp += xp_value
+	
 	# Play the Defeat animation
 	rig.travel("Defeat")
 	
@@ -46,4 +51,4 @@ func _on_health_component_defeat() -> void:
 
 func _on_rig_heavy_attack() -> void:
 	# Deal the damage - this signals after the overhead swing animation finishes
-	area_attack.deal_damage(20.0)
+	area_attack.deal_damage(20.0, crit_rate)

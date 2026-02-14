@@ -23,37 +23,37 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 [node name="Rig" parent="RigPivot" instance=ExtResource("2_ciwx7")]
 
 [node name="Skeleton3D" parent="RigPivot/Rig/CharacterRig/GameRig" index="0"]
-bones/0/position = Vector3(4.44009e-15, 0.896937, -0.0481735)
-bones/2/rotation = Quaternion(-0.00192592, -0.000417444, 0.0032148, 0.999993)
-bones/3/rotation = Quaternion(-0.0965639, -0.00038102, 0.00852, 0.99529)
-bones/4/rotation = Quaternion(0.277185, 1.55428e-08, 9.07681e-08, 0.960816)
-bones/6/rotation = Quaternion(-0.156032, -1.17825e-07, -1.81111e-08, 0.987752)
-bones/7/position = Vector3(-2.004e-08, 0.896937, -0.0481734)
-bones/8/position = Vector3(-5.06867e-08, 0.896937, -0.0481735)
-bones/9/position = Vector3(0.131144, 0.963142, -0.0351291)
-bones/9/rotation = Quaternion(0.992962, 0.0209023, -0.0309348, 0.112392)
-bones/11/rotation = Quaternion(0.422019, -0.000700578, 0.00032627, 0.906586)
-bones/13/rotation = Quaternion(-0.752366, 0.0118884, 0.0244083, 0.658186)
-bones/15/position = Vector3(-0.131144, 0.963142, -0.0351291)
-bones/15/rotation = Quaternion(0.973028, -0.00581403, 0.0273, 0.228994)
-bones/17/rotation = Quaternion(0.445954, 0.00330167, -0.00164516, 0.895049)
-bones/19/rotation = Quaternion(-0.68893, -0.0281966, -0.000681747, 0.724279)
-bones/21/position = Vector3(0.0251286, 1.42715, 0.0423881)
-bones/21/rotation = Quaternion(-0.492996, -0.258125, -0.400264, 0.72809)
-bones/22/position = Vector3(0.188534, 1.46402, -0.0237903)
-bones/22/rotation = Quaternion(0.0497239, -0.159713, 0.974449, -0.149898)
-bones/23/rotation = Quaternion(6.68483e-08, -0.0160665, 6.05139e-08, 0.999871)
-bones/24/rotation = Quaternion(0.299265, -0.0160672, -0.0183084, 0.953859)
-bones/46/position = Vector3(-0.0113635, 1.42715, 0.0423881)
-bones/46/rotation = Quaternion(-0.511653, 0.220067, 0.374266, 0.741422)
-bones/47/position = Vector3(-0.167056, 1.46446, -0.0401107)
-bones/47/rotation = Quaternion(-0.0758488, -0.136737, 0.973162, 0.168837)
-bones/48/rotation = Quaternion(6.72177e-08, 0.0131512, 6.91783e-08, 0.999914)
-bones/49/rotation = Quaternion(0.332161, 0.0131517, 0.0289518, 0.942686)
-bones/71/position = Vector3(0.127191, 1.3456, -0.0263525)
-bones/71/rotation = Quaternion(1.93158e-08, 0.61294, 0.790129, -4.64146e-08)
-bones/72/position = Vector3(-0.113426, 1.3456, -0.0263525)
-bones/72/rotation = Quaternion(1.93159e-08, 0.61294, 0.790129, -4.64145e-08)
+bones/0/position = Vector3(4.44089e-15, 0.908961, -0.0481736)
+bones/2/rotation = Quaternion(0.00587985, -0.000290933, 0.00321164, 0.999978)
+bones/3/rotation = Quaternion(-0.0894755, -0.000288826, 0.00852429, 0.995953)
+bones/4/rotation = Quaternion(0.270785, 1.45248e-08, 9.16192e-08, 0.96264)
+bones/6/rotation = Quaternion(-0.164106, -1.17886e-07, -1.77956e-08, 0.986443)
+bones/7/position = Vector3(-2.62601e-08, 0.908961, -0.0481735)
+bones/8/position = Vector3(-7.88087e-08, 0.908961, -0.0481735)
+bones/9/position = Vector3(0.131144, 0.975165, -0.0351291)
+bones/9/rotation = Quaternion(0.99414, 0.0203041, -0.031221, 0.101479)
+bones/11/rotation = Quaternion(0.397407, -0.00069586, 0.000301493, 0.917642)
+bones/13/rotation = Quaternion(-0.74178, 0.0118492, 0.0243642, 0.670096)
+bones/15/position = Vector3(-0.131144, 0.975165, -0.0351291)
+bones/15/rotation = Quaternion(0.975566, -0.00532727, 0.0276378, 0.217896)
+bones/17/rotation = Quaternion(0.423374, 0.00316812, -0.00148067, 0.905948)
+bones/19/rotation = Quaternion(-0.679117, -0.0281438, -0.00137801, 0.733489)
+bones/21/position = Vector3(0.0251286, 1.43861, 0.0467463)
+bones/21/rotation = Quaternion(-0.472634, -0.266404, -0.415185, 0.730252)
+bones/22/position = Vector3(0.19119, 1.47731, -0.011274)
+bones/22/rotation = Quaternion(0.0239868, -0.163614, 0.975421, -0.14563)
+bones/23/rotation = Quaternion(4.84733e-08, -0.0369637, 3.61213e-08, 0.999317)
+bones/24/rotation = Quaternion(0.346694, -0.0369644, -0.0216433, 0.937)
+bones/46/position = Vector3(-0.0113635, 1.43861, 0.0467463)
+bones/46/rotation = Quaternion(-0.474905, 0.260176, 0.411435, 0.733141)
+bones/47/position = Vector3(-0.176442, 1.47759, -0.0138331)
+bones/47/rotation = Quaternion(-0.0171947, -0.146642, 0.975962, 0.16031)
+bones/48/rotation = Quaternion(-9.42031e-08, 0.0528038, -1.00645e-07, 0.998605)
+bones/49/rotation = Quaternion(0.386639, 0.0528041, 0.0281482, 0.920288)
+bones/71/position = Vector3(0.127191, 1.35931, -0.0246463)
+bones/71/rotation = Quaternion(2.02111e-08, 0.599852, 0.800111, -4.59118e-08)
+bones/72/position = Vector3(-0.113426, 1.35931, -0.0246463)
+bones/72/rotation = Quaternion(2.02112e-08, 0.599852, 0.800111, -4.59117e-08)
 
 [node name="Knight_02" parent="RigPivot/Rig/CharacterRig/GameRig/Skeleton3D" index="1"]
 visible = false
@@ -61,14 +61,17 @@ visible = false
 [node name="Villager_01" parent="RigPivot/Rig/CharacterRig/GameRig/Skeleton3D" index="2"]
 visible = true
 
+[node name="AnimationPlayer" parent="RigPivot/Rig/CharacterRig" index="1"]
+autoplay = ""
+
 [node name="RightHandBone" parent="RigPivot/Rig" index="2"]
-transform = Transform3D(-0.962343, -0.270801, -0.0237164, 0.240838, -0.889808, 0.387608, -0.126068, 0.3673, 0.921519, -0.340873, 0.982858, -0.028814)
+transform = Transform3D(-0.962344, -0.270796, -0.0237207, 0.223392, -0.837555, 0.498595, -0.154885, 0.474521, 0.86651, -0.350258, 1.00947, 0.0240487)
 
 [node name="LeftHandBone" parent="RigPivot/Rig" index="3"]
-transform = Transform3D(-0.970514, 0.239105, 0.0305246, -0.221454, -0.934462, 0.278816, 0.0951905, 0.263835, 0.959859, 0.345344, 0.970711, -0.0480684)
+transform = Transform3D(-0.970514, 0.239104, 0.0305256, -0.210177, -0.901421, 0.378504, 0.118019, 0.360928, 0.925096, 0.348001, 0.992645, -0.01136)
 
 [node name="RayAttachment" type="BoneAttachment3D" parent="RigPivot/Rig"]
-transform = Transform3D(-0.962343, -0.270801, -0.0237164, 0.240838, -0.889808, 0.387608, -0.126068, 0.3673, 0.921519, -0.340873, 0.982858, -0.028814)
+transform = Transform3D(-0.962344, -0.270796, -0.0237207, 0.223392, -0.837555, 0.498595, -0.154885, 0.474521, 0.86651, -0.350258, 1.00947, 0.0240487)
 bone_name = "DEF-hand.R"
 bone_idx = 51
 use_external_skeleton = true

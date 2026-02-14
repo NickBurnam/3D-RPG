@@ -35,7 +35,7 @@ func _physics_process(delta: float) -> void:
 		return
 	
 	# Dash is a speed multiplier
-	player.velocity = direction * player.SPEED * speed_multiplier
+	player.velocity = direction * player.stats.get_base_speed() * speed_multiplier
 	
 	# Decrement the remaining dash time
 	time_remaining -= delta

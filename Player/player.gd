@@ -1,7 +1,6 @@
 extends CharacterBody3D
 class_name Player
 
-const SPEED:float  = 5.0
 const JUMP_VELOCITY:float  = 4.5
 const DECAY:float = 8.0
 
@@ -19,6 +18,8 @@ var _attack_direction:Vector3 = Vector3.ZERO
 @export var max_boundary:float = 10.0 #degrees
 @export var animation_decay:float = 20.0
 @export var attack_move_speed:float = 3.0
+@export_category("RPG Stats")
+@export var stats:CharacterStats
 
 @onready var smooth_camera_arm: SpringArm3D = $SmoothCameraArm
 @onready var horizontal_pivot: Node3D = $HorizontalPivot
@@ -34,6 +35,7 @@ var _attack_direction:Vector3 = Vector3.ZERO
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	health_component.update_max_health(30.0)
+	print(stats.get_base_speed())
 
 
 func _physics_process(delta: float) -> void:
@@ -63,6 +65,8 @@ func _physics_process(delta: float) -> void:
 
 
 func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("debug_gain_xp"):
+		stats.xp += 10000
 	if event.is_action_pressed("ui_cancel"):
 		# Toggle mouse capture
 		if Input.mouse_mode == Input.MOUSE_MODE_VISIBLE:
@@ -132,10 +136,10 @@ func handle_idle_physics_frame(delta:float, direction:Vector3) -> void:
 		return
 	
 	# Ease the x velocity
-	velocity.x = exponential_decay(velocity.x, direction.x * SPEED,DECAY, delta)
+	velocity.x = exponential_decay(velocity.x, direction.x * stats.get_base_speed(),DECAY, delta)
 	
 	# Ease the z velocity
-	velocity.z = exponential_decay(velocity.z, direction.z * SPEED,DECAY, delta)
+	velocity.z = exponential_decay(velocity.z, direction.z * stats.get_base_speed(),DECAY, delta)
 	
 	# Update the velocity of the player, update rig direction if needed
 	if direction:
@@ -155,7 +159,7 @@ func handle_slashing_physics_frame(delta:float) -> void:
 	look_toward_direction(_attack_direction, delta)
 	
 	# Deal damage
-	attack_cast.deal_damage()
+	attack_cast.deal_damage(10.0 + stats.get_base_strength(), stats.get_base_agility())
 
 
 func handle_overhead_physics_frame() -> void:
@@ -181,4 +185,4 @@ func _on_health_component_defeat() -> void:
 
 
 func _on_rig_heavy_attack() -> void:
-	area_attack.deal_damage(20.0)
+	area_attack.deal_damage(10.0 + stats.get_base_strength(), stats.get_base_agility())

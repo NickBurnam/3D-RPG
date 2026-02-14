@@ -1,0 +1,77 @@
+extends Resource
+class_name CharacterStats
+
+class Ability:
+	var min_modifier:float
+	var max_modifier:float
+	
+	# Ability score is a value in the range [0,100], higher is better
+	var ability_score:int = 25:
+		set(value):
+			ability_score = clamp(value, 0, 100)
+	
+	func _init(min:float, max:float) -> void:
+		min_modifier = min
+		max_modifier = max
+	
+	func percentile_lerp(min_bound:float, max_bound:float) -> float:
+		return lerp(min_bound, max_bound, ability_score / 100.0)
+	
+	func get_modifier() -> float:
+		return percentile_lerp(min_modifier, max_modifier)
+	
+	func increase() -> void:
+		ability_score += randi_range(2, 5)
+
+
+var level:int = 1
+var xp:int = 0:
+	set(value):
+		xp = value
+		var boundary = percentage_level_up_boundary()
+		
+		while xp > boundary:
+			xp -= boundary
+			level_up()
+			boundary = percentage_level_up_boundary()
+
+# Damage Bonus on attack
+var strength:Ability = Ability.new(2.0, 12.0)
+
+# Movement speed in m/s
+var speed:Ability = Ability.new(3.0, 7.0)
+
+# HP bonus per level
+var endurance:Ability = Ability.new(5.0, 25.0)
+
+# Critical hit chance
+var agility:Ability = Ability.new(0.05, 0.25)
+
+func get_base_strength() -> float:
+	return strength.get_modifier()
+
+func get_base_speed() -> float:
+	return speed.get_modifier()
+
+func get_base_endurance() -> float:
+	return endurance.get_modifier()
+
+func get_base_agility() -> float:
+	return agility.get_modifier()
+
+func level_up() -> void:
+	level += 1
+	strength.increase()
+	speed.increase()
+	endurance.increase()
+	agility.increase()
+	printt(level,strength.ability_score,speed.ability_score,endurance.ability_score,agility.ability_score)
+
+func percentage_level_up_boundary() -> int:
+	return int(50 * pow(1.2,level))
+
+func cubic_level_up_boundary() -> int:
+	return int(50 + pow(level,3))
+
+func _init() -> void:
+	printt(level,strength.ability_score,speed.ability_score,endurance.ability_score,agility.ability_score)
