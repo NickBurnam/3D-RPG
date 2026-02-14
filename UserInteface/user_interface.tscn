@@ -1,0 +1,102 @@
+[gd_scene load_steps=8 format=3 uid="uid://ccx00w8sbqrgl"]
+
+[ext_resource type="Script" path="res://UserInteface/user_interface.gd" id="1_7slj1"]
+[ext_resource type="Texture2D" uid="uid://8swunmfvbhkp" path="res://Assets/UIAssets/Unitframe/HealthBarUnder.png" id="1_uk6b0"]
+[ext_resource type="Texture2D" uid="uid://bob3o228a8gq8" path="res://Assets/UIAssets/Unitframe/HealthBarOver.png" id="2_oq8m3"]
+[ext_resource type="FontFile" uid="uid://b0awlsdj1flwo" path="res://Assets/Fonts/Libre_Caslon_Text/LibreCaslonText-Bold.ttf" id="3_0tbjh"]
+[ext_resource type="Texture2D" uid="uid://bnpbl2tj61hva" path="res://Assets/UIAssets/Unitframe/MainBar.png" id="3_1pjh6"]
+[ext_resource type="Texture2D" uid="uid://bahmomw5mvpt2" path="res://Assets/UIAssets/Unitframe/BlueBar.png" id="4_gvlo8"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_es2hi"]
+font = ExtResource("3_0tbjh")
+font_size = 26
+font_color = Color(0.960784, 0.717647, 0.423529, 1)
+
+[node name="UserInterface" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_7slj1")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="InfoBar" type="Control" parent="MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="HealthBarUnder" type="TextureRect" parent="MarginContainer/InfoBar"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_uk6b0")
+
+[node name="HealthBar" type="TextureProgressBar" parent="MarginContainer/InfoBar/HealthBarUnder"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+value = 100.0
+texture_progress = ExtResource("3_1pjh6")
+
+[node name="HealthLabel" type="Label" parent="MarginContainer/InfoBar/HealthBarUnder/HealthBar"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(95, 0)
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 108.0
+offset_top = -15.0
+offset_right = 243.0
+offset_bottom = -15.0
+grow_vertical = 2
+text = "1000/1000"
+label_settings = SubResource("LabelSettings_es2hi")
+vertical_alignment = 1
+
+[node name="XPBar" type="TextureProgressBar" parent="MarginContainer/InfoBar/HealthBarUnder"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+value = 100.0
+texture_progress = ExtResource("4_gvlo8")
+
+[node name="HealthBarOver" type="TextureRect" parent="MarginContainer/InfoBar"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_oq8m3")
+
+[node name="LevelLabel" type="Label" parent="MarginContainer/InfoBar/HealthBarOver"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(95, 0)
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 1.0
+grow_vertical = 2
+text = "999"
+label_settings = SubResource("LabelSettings_es2hi")
+horizontal_alignment = 1
+vertical_alignment = 1

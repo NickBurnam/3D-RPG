@@ -45,3 +45,7 @@ func take_damage(damage_in:float, is_critical:bool) -> void:
 	
 	# Subtract the damage from the current health
 	current_health -= damage_in
+
+func get_health_string() -> String:
+	# Format the health string to be "999/999"
+	return "%s/%s" % [current_health, max_health]
