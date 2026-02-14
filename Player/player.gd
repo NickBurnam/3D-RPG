@@ -1,8 +1,9 @@
 extends CharacterBody3D
 class_name Player
 
-const SPEED = 5.0
-const JUMP_VELOCITY = 4.5
+const SPEED:float  = 5.0
+const JUMP_VELOCITY:float  = 4.5
+const DECAY:float = 8.0
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -123,19 +124,19 @@ func slash_attack() -> void:
 
 
 func handle_idle_physics_frame(delta:float, direction:Vector3) -> void:
-	if not rig.is_idle():
+	if not rig.is_idle() and not rig.is_dashing():
 		return
+	
+	# Ease the x velocity
+	velocity.x = exponential_decay(velocity.x, direction.x * SPEED,DECAY, delta)
+	
+	# Ease the z velocity
+	velocity.z = exponential_decay(velocity.z, direction.z * SPEED,DECAY, delta)
 	
 	# Update the velocity of the player, update rig direction if needed
 	if direction:
-		velocity.x = direction.x * SPEED
-		velocity.z = direction.z * SPEED
-		
 		# Update the Rig to face the direction of movement
 		look_toward_direction(direction, delta)
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		velocity.z = move_toward(velocity.z, 0, SPEED)
 
 
 func handle_slashing_physics_frame(delta:float) -> void:
@@ -160,6 +161,10 @@ func handle_overhead_physics_frame() -> void:
 	# Keep the player stationary for the overhead swing
 	velocity.x = 0.0
 	velocity.z = 0.0
+
+
+func exponential_decay(a:float, b:float, decay:float, delta:float) -> float:
+	return b + (a - b) * exp(-decay * delta)
 
 
 func _on_health_component_defeat() -> void:

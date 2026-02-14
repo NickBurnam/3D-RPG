@@ -1,4 +1,5 @@
 extends Node3D
+class_name Rig
 
 signal heavy_attack()
 
@@ -32,12 +33,16 @@ func is_idle() -> bool:
 	return playback.get_current_node() == "MoveSpace"
 
 
+func is_dashing() -> bool:
+	return playback.get_current_node() == "Dash"
+
+
 func is_slashing() -> bool:
 	return playback.get_current_node() == "Slash"
 
 
 func is_overhead() -> bool:
-	return playback.get_current_node() == "Overhead"
+	return playback.get_current_node() in ["Overhead", "OverheadRecover"]
 
 
 func set_active_mesh(active_mesh:MeshInstance3D) -> void:
