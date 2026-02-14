@@ -1,6 +1,8 @@
 extends Resource
 class_name CharacterStats
 
+signal level_up_notification()
+
 class Ability:
 	var min_modifier:float
 	var max_modifier:float
@@ -10,9 +12,9 @@ class Ability:
 		set(value):
 			ability_score = clamp(value, 0, 100)
 	
-	func _init(min:float, max:float) -> void:
-		min_modifier = min
-		max_modifier = max
+	func _init(_min:float, _max:float) -> void:
+		min_modifier = _min
+		max_modifier = _max
 	
 	func percentile_lerp(min_bound:float, max_bound:float) -> float:
 		return lerp(min_bound, max_bound, ability_score / 100.0)
@@ -34,6 +36,9 @@ var xp:int = 0:
 			xp -= boundary
 			level_up()
 			boundary = percentage_level_up_boundary()
+
+const MIN_DASH_COOLDOWN:float = 1.5
+const MAX_DASH_COOLDOWN:float = 0.5
 
 # Damage Bonus on attack
 var strength:Ability = Ability.new(2.0, 12.0)
@@ -59,12 +64,19 @@ func get_base_endurance() -> float:
 func get_base_agility() -> float:
 	return agility.get_modifier()
 
+func get_max_hp() -> int:
+	return 20 + int(level * endurance.get_modifier())
+
+func get_dash_cooldown() -> float:
+	return agility.percentile_lerp(MIN_DASH_COOLDOWN, MAX_DASH_COOLDOWN)
+
 func level_up() -> void:
 	level += 1
 	strength.increase()
 	speed.increase()
 	endurance.increase()
 	agility.increase()
+	level_up_notification.emit()
 	printt(level,strength.ability_score,speed.ability_score,endurance.ability_score,agility.ability_score)
 
 func percentage_level_up_boundary() -> int:

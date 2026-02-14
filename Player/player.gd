@@ -33,9 +33,16 @@ var _attack_direction:Vector3 = Vector3.ZERO
 
 
 func _ready() -> void:
+	# Capture the mouse
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-	health_component.update_max_health(30.0)
-	print(stats.get_base_speed())
+	
+	# Set the player max health
+	health_component.update_max_health(stats.get_max_hp())
+	
+	# Connect the level up signal to update the health component max health
+	stats.level_up_notification.connect(
+		func(): health_component.update_max_health(stats.get_max_hp())
+	)
 
 
 func _physics_process(delta: float) -> void:
