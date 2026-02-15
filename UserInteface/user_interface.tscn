@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://ccx00w8sbqrgl"]
+[gd_scene load_steps=9 format=3 uid="uid://ccx00w8sbqrgl"]
 
 [ext_resource type="Script" path="res://UserInteface/user_interface.gd" id="1_7slj1"]
 [ext_resource type="Texture2D" uid="uid://8swunmfvbhkp" path="res://Assets/UIAssets/Unitframe/HealthBarUnder.png" id="1_uk6b0"]
@@ -6,6 +6,7 @@
 [ext_resource type="FontFile" uid="uid://b0awlsdj1flwo" path="res://Assets/Fonts/Libre_Caslon_Text/LibreCaslonText-Bold.ttf" id="3_0tbjh"]
 [ext_resource type="Texture2D" uid="uid://bnpbl2tj61hva" path="res://Assets/UIAssets/Unitframe/MainBar.png" id="3_1pjh6"]
 [ext_resource type="Texture2D" uid="uid://bahmomw5mvpt2" path="res://Assets/UIAssets/Unitframe/BlueBar.png" id="4_gvlo8"]
+[ext_resource type="PackedScene" uid="uid://bfk5apcyifgvh" path="res://UserInteface/inventory.tscn" id="7_nqw66"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_es2hi"]
 font = ExtResource("3_0tbjh")
@@ -13,6 +14,7 @@ font_size = 26
 font_color = Color(0.960784, 0.717647, 0.423529, 1)
 
 [node name="UserInterface" type="Control"]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -100,3 +102,7 @@ text = "999"
 label_settings = SubResource("LabelSettings_es2hi")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Inventory" parent="." instance=ExtResource("7_nqw66")]
+visible = false
+layout_mode = 1
