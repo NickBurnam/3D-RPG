@@ -9,6 +9,8 @@ signal heavy_attack()
 @onready var playback:AnimationNodeStateMachinePlayback = animation_tree["parameters/playback"]
 @onready var skeleton_3d: Skeleton3D = $CharacterRig/GameRig/Skeleton3D
 @onready var villager_meshes:Array[MeshInstance3D] = [$CharacterRig/GameRig/Skeleton3D/Villager_01, $CharacterRig/GameRig/Skeleton3D/Villager_02]
+@onready var weapon_slot: Node3D = %WeaponSlot
+@onready var shield_slot: Node3D = %ShieldSlot
 
 var run_path:String = "parameters/MoveSpace/blend_position"
 var run_weight_target:float = -1.0
@@ -52,6 +54,26 @@ func set_active_mesh(active_mesh:MeshInstance3D) -> void:
 	
 	# Set the desired mesh visible
 	active_mesh.visible = true
+
+
+func replace_shield(shield_scene:PackedScene) -> void:
+	# Revoce current items in the shield slot
+	for child in shield_slot.get_children():
+		child.queue_free()
+	
+	# Add the new shield to the slot
+	var new_shield = shield_scene.instantiate()
+	shield_slot.add_child(new_shield)
+
+
+func replace_weapon(weapon_scene:PackedScene) -> void:
+	# Revoce current items in the weapon slot
+	for child in weapon_slot.get_children():
+		child.queue_free()
+	
+	# Add the new weapon to the slot
+	var new_weapon = weapon_scene.instantiate()
+	weapon_slot.add_child(new_weapon)
 
 
 func _on_animation_tree_animation_finished(anim_name: StringName) -> void:

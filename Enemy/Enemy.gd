@@ -12,6 +12,8 @@ var velocity_target:Vector3 = Vector3.ZERO
 @export var xp_value:float = 25.0
 @export var crit_rate:float = 0.05
 @export var speed:float = 5.0
+@export var shields:Array[PackedScene]
+@export var weapons:Array[PackedScene]
 
 @onready var rig: Node3D = $RigPivot/Rig
 @onready var health_component: HealthComponent = $HealthComponent
@@ -24,6 +26,10 @@ var velocity_target:Vector3 = Vector3.ZERO
 func _ready() -> void:
 	# Pick from the list of villager meshes
 	rig.set_active_mesh(rig.villager_meshes.pick_random())
+	
+	# Randomize the enemy gear
+	rig.replace_shield(shields.pick_random())
+	rig.replace_weapon(weapons.pick_random())
 	
 	# Set the max health
 	health_component.update_max_health(max_health)
