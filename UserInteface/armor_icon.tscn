@@ -5,5 +5,5 @@
 
 [node name="ArmorIcon" instance=ExtResource("1_7gqtj")]
 script = ExtResource("2_rrumq")
-power = 0
+protection = 0
 armor = 0

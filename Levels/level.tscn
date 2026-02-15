@@ -343,10 +343,10 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 15.322
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -14.6106, -0.00366545, -19.813)
 
 [node name="Fire_Pit_Env2" parent="NavigationRegion3D/Decorations" instance=ExtResource("18_bplmo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.82485, 0.11489, 18.6605)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.82485, -0.0499999, 18.6605)
 
 [node name="Fire_Pit_Env3" parent="NavigationRegion3D/Decorations" instance=ExtResource("18_bplmo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.0272, 0.11489, -13.0424)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.0272, -0.05, -13.0424)
 
 [node name="Barrel_Wooden_Prop2" parent="NavigationRegion3D/Decorations" instance=ExtResource("19_wtkax")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.2496, 0.553428, 15.5388)
