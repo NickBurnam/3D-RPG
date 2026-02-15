@@ -1,0 +1,14 @@
+[gd_scene load_steps=5 format=3 uid="uid://bgss7gdli1uf1"]
+
+[ext_resource type="PackedScene" uid="uid://cyko5p4s125j8" path="res://UserInteface/item_icon.tscn" id="1_ehuyi"]
+[ext_resource type="Texture2D" uid="uid://ekjgrsayx2sm" path="res://Assets/UIAssets/Icons/sword_icon.png" id="2_mkumd"]
+[ext_resource type="Script" path="res://UserInteface/weapon_icon.gd" id="2_ylj72"]
+[ext_resource type="PackedScene" uid="uid://cumf0xmf0oty8" path="res://Assets/3D_Assets/Character/Gear/Longsword.glb" id="3_lnwdi"]
+
+[node name="WeaponIcon" instance=ExtResource("1_ehuyi")]
+script = ExtResource("2_ylj72")
+power = 10
+item_model = ExtResource("3_lnwdi")
+
+[node name="TypeIcon" parent="." index="0"]
+texture = ExtResource("2_mkumd")
