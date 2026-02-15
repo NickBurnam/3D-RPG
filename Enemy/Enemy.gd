@@ -102,6 +102,8 @@ func _on_health_component_defeat() -> void:
 	# Disable the physics collision
 	collision_shape_3d.disabled = true
 	set_physics_process(false)
+	navigation_agent_3d.target_position = global_position
+	navigation_agent_3d.velocity = Vector3.ZERO
 
 
 func _on_rig_heavy_attack() -> void:
