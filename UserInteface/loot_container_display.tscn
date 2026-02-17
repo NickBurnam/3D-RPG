@@ -1,0 +1,81 @@
+[gd_scene load_steps=10 format=3 uid="uid://brk7tb78tqdku"]
+
+[ext_resource type="Script" path="res://UserInteface/loot_container_display.gd" id="1_lxwrp"]
+[ext_resource type="StyleBox" uid="uid://ctpw0yq0ee33n" path="res://UserInteface/ui_panel.tres" id="2_m7ufw"]
+[ext_resource type="Texture2D" uid="uid://bohp5e1aw13hb" path="res://Assets/UIAssets/Window/window_header.png" id="3_a6ghs"]
+[ext_resource type="FontFile" uid="uid://b0awlsdj1flwo" path="res://Assets/Fonts/Libre_Caslon_Text/LibreCaslonText-Bold.ttf" id="4_waq5r"]
+[ext_resource type="Texture2D" uid="uid://cq4o12lgqmqpp" path="res://Assets/UIAssets/Button Small/button_small.png" id="5_5sjp1"]
+[ext_resource type="Texture2D" uid="uid://stll621qowuo" path="res://Assets/UIAssets/Button Small/button_small_press.png" id="6_unrvj"]
+[ext_resource type="Texture2D" uid="uid://y0ocvc3mpu5k" path="res://Assets/UIAssets/Button Small/button_small_hover.png" id="7_06ryf"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_mh65x"]
+font = ExtResource("4_waq5r")
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_gjlnm"]
+font = ExtResource("4_waq5r")
+font_size = 26
+shadow_color = Color(0, 0, 0, 1)
+
+[node name="LootContainerDisplay" type="CenterContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_lxwrp")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("2_m7ufw")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+layout_mode = 2
+
+[node name="TitleTexture" type="TextureRect" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("3_a6ghs")
+expand_mode = 5
+stretch_mode = 4
+
+[node name="TitleLabel" type="Label" parent="PanelContainer/VBoxContainer/TitleTexture"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Lootbox Name"
+label_settings = SubResource("LabelSettings_mh65x")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GridContainer" type="GridContainer" parent="PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(512, 256)
+layout_mode = 2
+columns = 4
+
+[node name="CloseButton" type="TextureButton" parent="PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(200, 80)
+layout_mode = 2
+size_flags_horizontal = 4
+focus_mode = 0
+texture_normal = ExtResource("5_5sjp1")
+texture_pressed = ExtResource("6_unrvj")
+texture_hover = ExtResource("7_06ryf")
+ignore_texture_size = true
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/CloseButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Close"
+label_settings = SubResource("LabelSettings_gjlnm")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="PanelContainer/VBoxContainer/CloseButton" to="." method="_on_close_button_pressed"]

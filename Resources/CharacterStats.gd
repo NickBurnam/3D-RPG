@@ -80,13 +80,9 @@ func level_up() -> void:
 	endurance.increase()
 	agility.increase()
 	level_up_notification.emit()
-	printt(level,strength.ability_score,speed.ability_score,endurance.ability_score,agility.ability_score)
 
 func percentage_level_up_boundary() -> int:
 	return int(50 * pow(1.2,level))
 
 func cubic_level_up_boundary() -> int:
 	return int(50 + pow(level,3))
-
-func _init() -> void:
-	printt(level,strength.ability_score,speed.ability_score,endurance.ability_score,agility.ability_score)

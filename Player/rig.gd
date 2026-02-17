@@ -9,6 +9,8 @@ signal heavy_attack()
 @onready var playback:AnimationNodeStateMachinePlayback = animation_tree["parameters/playback"]
 @onready var skeleton_3d: Skeleton3D = $CharacterRig/GameRig/Skeleton3D
 @onready var villager_meshes:Array[MeshInstance3D] = [$CharacterRig/GameRig/Skeleton3D/Villager_01, $CharacterRig/GameRig/Skeleton3D/Villager_02]
+@onready var knight_iron: MeshInstance3D = $CharacterRig/GameRig/Skeleton3D/Knight_01
+@onready var knight_steel: MeshInstance3D = $CharacterRig/GameRig/Skeleton3D/Knight_02
 @onready var weapon_slot: Node3D = %WeaponSlot
 @onready var shield_slot: Node3D = %ShieldSlot
 
@@ -74,6 +76,17 @@ func replace_weapon(weapon_scene:PackedScene) -> void:
 	# Add the new weapon to the slot
 	var new_weapon = weapon_scene.instantiate()
 	weapon_slot.add_child(new_weapon)
+
+
+func replace_armor(armor_type:ArmorIcon.armor_type) -> void:
+	# Change the armor mesh using the enum value
+	match armor_type:
+		ArmorIcon.armor_type.IRON_PLATE:
+			set_active_mesh(knight_iron)
+		ArmorIcon.armor_type.STEEL_PLATE:
+			set_active_mesh(knight_steel)
+		_:
+			printerr("Armor Type Invalid. ID: %s" % armor_type)
 
 
 func _on_animation_tree_animation_finished(anim_name: StringName) -> void:

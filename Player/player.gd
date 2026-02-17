@@ -31,6 +31,7 @@ var _attack_direction:Vector3 = Vector3.ZERO
 @onready var collision_shape_3d: CollisionShape3D = $CollisionShape3D
 @onready var area_attack: ShapeCast3D = $RigPivot/AreaAttack
 @onready var user_interface: UserInterface = $UserInterface
+@onready var interaction_cast: ShapeCast3D = $RigPivot/InteractionCast
 
 
 func _ready() -> void:
@@ -50,6 +51,9 @@ func _ready() -> void:
 	
 	# Call the UI update once at the start
 	user_interface.update_stats_display()
+	
+	# Connect the armor_changed signal to the health component
+	user_interface.inventory.armor_changed.connect(health_component.update_armor_value)
 
 
 func _physics_process(delta: float) -> void:
@@ -66,6 +70,9 @@ func _physics_process(delta: float) -> void:
 	handle_slashing_physics_frame(delta)
 	
 	handle_overhead_physics_frame()
+	
+	# Check for possible interactions
+	interaction_cast.check_interactions()
 	
 	# Add the gravity.
 	if not is_on_floor():
@@ -172,8 +179,8 @@ func handle_slashing_physics_frame(delta:float) -> void:
 	# Face the rig to the attack direction
 	look_toward_direction(_attack_direction, delta)
 	
-	# Deal damage
-	attack_cast.deal_damage(10.0 + stats.get_base_strength(), stats.get_base_agility())
+	# Deal damage - now using the equiped weapon stats
+	attack_cast.deal_damage(user_interface.inventory.get_weapon_value() + stats.get_base_strength(), stats.get_base_agility())
 
 
 func handle_overhead_physics_frame() -> void:
@@ -199,4 +206,5 @@ func _on_health_component_defeat() -> void:
 
 
 func _on_rig_heavy_attack() -> void:
-	area_attack.deal_damage(10.0 + stats.get_base_strength(), stats.get_base_agility())
+	# Deal damage - now using the equiped weapon stats
+	area_attack.deal_damage(user_interface.inventory.get_weapon_value() + stats.get_base_strength(), stats.get_base_agility())

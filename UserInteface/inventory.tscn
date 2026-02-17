@@ -1,10 +1,11 @@
-[gd_scene load_steps=22 format=3 uid="uid://bfk5apcyifgvh"]
+[gd_scene load_steps=24 format=3 uid="uid://bfk5apcyifgvh"]
 
 [ext_resource type="Script" path="res://UserInteface/inventory.gd" id="1_58fgg"]
 [ext_resource type="Texture2D" uid="uid://bohp5e1aw13hb" path="res://Assets/UIAssets/Window/window_header.png" id="1_k7jvd"]
 [ext_resource type="FontFile" uid="uid://b0awlsdj1flwo" path="res://Assets/Fonts/Libre_Caslon_Text/LibreCaslonText-Bold.ttf" id="2_ru4iq"]
 [ext_resource type="StyleBox" uid="uid://ctpw0yq0ee33n" path="res://UserInteface/ui_panel.tres" id="3_ryt7s"]
 [ext_resource type="Texture2D" uid="uid://d2wosw8ripxgo" path="res://Assets/UIAssets/Icons/spell_slot_empty.png" id="4_xwb7l"]
+[ext_resource type="Texture2D" uid="uid://jywjqgf4q28q" path="res://Assets/UIAssets/Window/NumberFrame.png" id="5_6c65m"]
 [ext_resource type="PackedScene" uid="uid://dll3md5b5ql3s" path="res://Player/rig.tscn" id="5_ds106"]
 [ext_resource type="FontFile" uid="uid://cc0kbijgau08k" path="res://Assets/Fonts/Libre_Caslon_Text/LibreCaslonText-Italic.ttf" id="5_nb4py"]
 [ext_resource type="Texture2D" uid="uid://cq4o12lgqmqpp" path="res://Assets/UIAssets/Button Small/button_small.png" id="7_v8k6t"]
@@ -22,6 +23,11 @@ fill_to = Vector2(0, 1)
 [sub_resource type="LabelSettings" id="LabelSettings_56wtb"]
 font = ExtResource("2_ru4iq")
 font_size = 48
+
+[sub_resource type="LabelSettings" id="LabelSettings_7v0e6"]
+font = ExtResource("2_ru4iq")
+font_size = 26
+font_color = Color(0.960784, 0.717647, 0.423529, 1)
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_2gu3c"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -121,6 +127,33 @@ custom_minimum_size = Vector2(960, 0)
 layout_mode = 2
 theme_override_styles/panel = ExtResource("3_ryt7s")
 
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/HeldItems"]
+layout_mode = 2
+
+[node name="ItemGrid" type="GridContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/HeldItems/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+columns = 7
+
+[node name="GoldFrame" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer/HeldItems/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+texture = ExtResource("5_6c65m")
+
+[node name="GoldLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/HeldItems/VBoxContainer/GoldFrame"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "0 Gold"
+label_settings = SubResource("LabelSettings_7v0e6")
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="SubViewportContainer" type="SubViewportContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(512, 0)
 layout_mode = 2
@@ -133,7 +166,7 @@ handle_input_locally = false
 size = Vector2i(512, 868)
 render_target_update_mode = 4
 
-[node name="Rig" parent="MarginContainer/VBoxContainer/HBoxContainer/SubViewportContainer/SubViewport" instance=ExtResource("5_ds106")]
+[node name="Rig" parent="MarginContainer/VBoxContainer/HBoxContainer/SubViewportContainer/SubViewport" groups=["PlayerRig"] instance=ExtResource("5_ds106")]
 
 [node name="Camera3D" type="Camera3D" parent="MarginContainer/VBoxContainer/HBoxContainer/SubViewportContainer/SubViewport"]
 transform = Transform3D(1, 0, 0, 0, 0.996195, 0.0871557, 0, -0.0871557, 0.996195, 0, 1.2, 3)
@@ -297,6 +330,60 @@ size_flags_horizontal = 3
 text = "100"
 label_settings = SubResource("LabelSettings_q50kb")
 horizontal_alignment = 1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/CharacterSheet/VBoxContainer"]
+layout_mode = 2
+
+[node name="AttributeName" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/CharacterSheet/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Armor Protection"
+label_settings = SubResource("LabelSettings_5uve5")
+horizontal_alignment = 1
+uppercase = true
+
+[node name="ArmorValue" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/CharacterSheet/VBoxContainer/HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "100"
+label_settings = SubResource("LabelSettings_q50kb")
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/CharacterSheet/VBoxContainer"]
+layout_mode = 2
+
+[node name="EquipmentLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/CharacterSheet/VBoxContainer"]
+layout_mode = 2
+text = "Equipment"
+label_settings = SubResource("LabelSettings_bp6yf")
+horizontal_alignment = 1
+
+[node name="ItemSlotGrid" type="GridContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/CharacterSheet/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 2
+columns = 2
+
+[node name="WeaponSlot" type="CenterContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/CharacterSheet/VBoxContainer/ItemSlotGrid"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+
+[node name="ShieldSlot" type="CenterContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/CharacterSheet/VBoxContainer/ItemSlotGrid"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+
+[node name="ArmorSlot" type="CenterContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/CharacterSheet/VBoxContainer/ItemSlotGrid"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
 
 [node name="BackButton" type="TextureButton" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(200, 80)
