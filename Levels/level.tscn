@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://d17gl4jh8w6uo"]
+[gd_scene load_steps=36 format=3 uid="uid://d17gl4jh8w6uo"]
 
 [ext_resource type="PackedScene" uid="uid://h8u7bc7iniob" path="res://Player/player.tscn" id="1_vklc7"]
 [ext_resource type="PackedScene" uid="uid://dxm3dwu6bsysu" path="res://Assets/3D_Assets/Environment/Path_Cobblestone_Env_04.glb" id="2_48i6n"]
@@ -29,6 +29,7 @@
 [ext_resource type="PackedScene" uid="uid://8fmvs163k3tf" path="res://Assets/3D_Assets/Character/Gear/Broken_Sword.glb" id="23_wyvi5"]
 [ext_resource type="PackedScene" uid="uid://csiq52dcxwam7" path="res://Assets/3D_Assets/Character/Gear/Battleaxe.glb" id="24_uvwxu"]
 [ext_resource type="PackedScene" uid="uid://bgss7gdli1uf1" path="res://UserInteface/weapon_icon.tscn" id="24_y16l3"]
+[ext_resource type="PackedScene" uid="uid://dgoasludwy7xx" path="res://Interactible/passage.tscn" id="28_dv45o"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_2gu3c"]
 sky_top_color = Color(0.1375, 0.309375, 0.55, 1)
@@ -435,6 +436,10 @@ protection = 11
 visible = false
 protection = 55
 armor = 1
+
+[node name="Passage" parent="NavigationRegion3D/Interactible" instance=ExtResource("28_dv45o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.52385, -23.1965)
+next_level = "res://Levels/CastleLevel.tscn"
 
 [node name="Player" parent="." instance=ExtResource("1_vklc7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)

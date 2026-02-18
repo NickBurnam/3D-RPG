@@ -54,6 +54,9 @@ func _ready() -> void:
 	
 	# Connect the armor_changed signal to the health component
 	user_interface.inventory.armor_changed.connect(health_component.update_armor_value)
+	
+	# Fade in from black when the player loads
+	SceneTransition.fade_in()
 
 
 func _physics_process(delta: float) -> void:

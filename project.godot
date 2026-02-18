@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 VfxManager="*res://Autoload/vfx_manager.tscn"
+SceneTransition="*res://Autoload/scene_transition.tscn"
 
 [display]
 
