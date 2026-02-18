@@ -267,7 +267,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, -1, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22, 1, -4)
 
 [node name="Vine_Vege_013" parent="NavigationRegion3D/Castle/Wall_Stone_Gate_Bldg_012/House_Modular_012" instance=ExtResource("7_k3ru5")]
-transform = Transform3D(1, 0, 0, 0, 0.676812, 0.736156, 0, -0.736156, 0.676812, -6.23571, 4.4411, 0.220181)
 
 [node name="House_Modular_013" parent="NavigationRegion3D/Castle/Wall_Stone_Gate_Bldg_012" instance=ExtResource("8_dw20u")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 1, -11)
