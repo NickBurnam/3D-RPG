@@ -55,6 +55,10 @@ func _ready() -> void:
 	# Connect the armor_changed signal to the health component
 	user_interface.inventory.armor_changed.connect(health_component.update_armor_value)
 	
+	# Avoid setting the current health to 0 from persistent
+	if PersistentData.current_health:
+		health_component.current_health = PersistentData.current_health
+	
 	# Fade in from black when the player loads
 	SceneTransition.fade_in()
 

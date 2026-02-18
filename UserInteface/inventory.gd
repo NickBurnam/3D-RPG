@@ -29,6 +29,9 @@ signal armor_changed(protection:float)
 
 func _ready() -> void:
 	update_status()
+	
+	# Get the items stored in persistent
+	load_items_from_persistent_data()
 
 
 func update_status() -> void:
@@ -118,6 +121,7 @@ func get_armor() -> ArmorIcon:
 		return null
 	return armor_slot.get_child(0)
 
+
 func get_armor_value() -> float:
 	# Armor value is armor + shield protection, clamped to the defined range
 	var armor:float = 0.0
@@ -127,7 +131,22 @@ func get_armor_value() -> float:
 		armor += get_shield().protection
 	armor = clampf(armor, MIN_ARMOR_RATING, MAX_ARMOR_RATING)
 	return armor
+
+
+func load_items_from_persistent_data() -> void:
+	# Grab items from persistent
+	for item in PersistentData.get_inventory():
+		add_item(item)
 	
+	# Grab equipped items from persistent
+	for item in PersistentData.get_equipped_items():
+		add_item(item)
+		interact(item)
+	
+	# Get gold amount from persistent
+	gold = PersistentData.gold
+
+
 func _on_back_button_pressed() -> void:
 	# Exit the menu
 	get_parent().close_menu()

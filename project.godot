@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 VfxManager="*res://Autoload/vfx_manager.tscn"
 SceneTransition="*res://Autoload/scene_transition.tscn"
+PersistentData="*res://Autoload/persistent_data.tscn"
 
 [display]
 
