@@ -20,6 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://cnt7rhbam2e1q" path="res://Assets/3D_Assets/Environment/Barrel_Wooden_Prop.glb" id="19_m1c83"]
 [ext_resource type="PackedScene" uid="uid://dgoasludwy7xx" path="res://Interactible/passage.tscn" id="28_cmu8h"]
 [ext_resource type="PackedScene" uid="uid://h8u7bc7iniob" path="res://Player/player.tscn" id="29_wmj7t"]
+[ext_resource type="PackedScene" uid="uid://cdy6h7jf7vfn" path="res://Enemy/enemy.tscn" id="30_u0k80"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_2gu3c"]
 sky_top_color = Color(0.1375, 0.309375, 0.55, 1)
@@ -542,3 +543,15 @@ next_level = "res://Levels/level.tscn"
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1, 24)
 
 [node name="Enemies" type="Node3D" parent="." unique_id=2012803942]
+
+[node name="Enemy" parent="Enemies" unique_id=1866508234 instance=ExtResource("30_u0k80")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 13.2771, 1, 14)
+
+[node name="Enemy2" parent="Enemies" unique_id=1387608903 instance=ExtResource("30_u0k80")]
+transform = Transform3D(-0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, -0.5, -11.7229, 1, 0.96703)
+
+[node name="Enemy3" parent="Enemies" unique_id=442932745 instance=ExtResource("30_u0k80")]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, -10.7229, 1, -6.92115)
+
+[node name="Enemy4" parent="Enemies" unique_id=986551440 instance=ExtResource("30_u0k80")]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, -2.7229, 1, -22.7852)
