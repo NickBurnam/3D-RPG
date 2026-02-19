@@ -1,6 +1,6 @@
-[gd_scene load_steps=15 format=3 uid="uid://ccx00w8sbqrgl"]
+[gd_scene format=3 uid="uid://ccx00w8sbqrgl"]
 
-[ext_resource type="Script" path="res://UserInteface/user_interface.gd" id="1_7slj1"]
+[ext_resource type="Script" uid="uid://gj7oj4t53tdu" path="res://UserInteface/user_interface.gd" id="1_7slj1"]
 [ext_resource type="Texture2D" uid="uid://8swunmfvbhkp" path="res://Assets/UIAssets/Unitframe/HealthBarUnder.png" id="1_uk6b0"]
 [ext_resource type="Texture2D" uid="uid://bob3o228a8gq8" path="res://Assets/UIAssets/Unitframe/HealthBarOver.png" id="2_oq8m3"]
 [ext_resource type="FontFile" uid="uid://b0awlsdj1flwo" path="res://Assets/Fonts/Libre_Caslon_Text/LibreCaslonText-Bold.ttf" id="3_0tbjh"]
@@ -79,11 +79,11 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ahu28"]
 _data = {
-"FadeOutText": SubResource("Animation_co48v"),
-"RESET": SubResource("Animation_hc7jn")
+&"FadeOutText": SubResource("Animation_co48v"),
+&"RESET": SubResource("Animation_hc7jn")
 }
 
-[node name="UserInterface" type="Control"]
+[node name="UserInterface" type="Control" unique_id=1809275841]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 15
@@ -94,7 +94,7 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_7slj1")
 
-[node name="HUD" type="MarginContainer" parent="."]
+[node name="HUD" type="MarginContainer" parent="." unique_id=2119940099]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -107,17 +107,17 @@ theme_override_constants/margin_top = 32
 theme_override_constants/margin_right = 32
 theme_override_constants/margin_bottom = 32
 
-[node name="InfoBar" type="Control" parent="HUD"]
+[node name="InfoBar" type="Control" parent="HUD" unique_id=262558765]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="HealthBarUnder" type="TextureRect" parent="HUD/InfoBar"]
+[node name="HealthBarUnder" type="TextureRect" parent="HUD/InfoBar" unique_id=195605516]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 texture = ExtResource("1_uk6b0")
 
-[node name="HealthBar" type="TextureProgressBar" parent="HUD/InfoBar/HealthBarUnder"]
+[node name="HealthBar" type="TextureProgressBar" parent="HUD/InfoBar/HealthBarUnder" unique_id=552456531]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
@@ -128,7 +128,7 @@ grow_vertical = 2
 value = 100.0
 texture_progress = ExtResource("3_1pjh6")
 
-[node name="HealthLabel" type="Label" parent="HUD/InfoBar/HealthBarUnder/HealthBar"]
+[node name="HealthLabel" type="Label" parent="HUD/InfoBar/HealthBarUnder/HealthBar" unique_id=95101179]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(95, 0)
 layout_mode = 1
@@ -143,7 +143,7 @@ text = "1000/1000"
 label_settings = SubResource("LabelSettings_es2hi")
 vertical_alignment = 1
 
-[node name="XPBar" type="TextureProgressBar" parent="HUD/InfoBar/HealthBarUnder"]
+[node name="XPBar" type="TextureProgressBar" parent="HUD/InfoBar/HealthBarUnder" unique_id=1349075960]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
@@ -154,13 +154,13 @@ grow_vertical = 2
 value = 100.0
 texture_progress = ExtResource("4_gvlo8")
 
-[node name="HealthBarOver" type="TextureRect" parent="HUD/InfoBar"]
+[node name="HealthBarOver" type="TextureRect" parent="HUD/InfoBar" unique_id=78561732]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 texture = ExtResource("2_oq8m3")
 
-[node name="LevelLabel" type="Label" parent="HUD/InfoBar/HealthBarOver"]
+[node name="LevelLabel" type="Label" parent="HUD/InfoBar/HealthBarOver" unique_id=1918193631]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(95, 0)
 layout_mode = 1
@@ -173,7 +173,7 @@ label_settings = SubResource("LabelSettings_es2hi")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="InteractContainer" type="VBoxContainer" parent="HUD"]
+[node name="InteractContainer" type="VBoxContainer" parent="HUD" unique_id=1055380342]
 visible = false
 modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(512, 0)
@@ -182,33 +182,31 @@ size_flags_horizontal = 4
 size_flags_vertical = 8
 mouse_filter = 2
 
-[node name="InteractButtonLabel" type="Label" parent="HUD/InteractContainer"]
+[node name="InteractButtonLabel" type="Label" parent="HUD/InteractContainer" unique_id=180993294]
 layout_mode = 2
 text = "E"
 label_settings = SubResource("LabelSettings_vtql6")
 horizontal_alignment = 1
 
-[node name="HSeparator" type="HSeparator" parent="HUD/InteractContainer"]
+[node name="HSeparator" type="HSeparator" parent="HUD/InteractContainer" unique_id=78022924]
 layout_mode = 2
 theme_override_styles/separator = SubResource("StyleBoxLine_tmon3")
 
-[node name="InteractItemName" type="Label" parent="HUD/InteractContainer"]
+[node name="InteractItemName" type="Label" parent="HUD/InteractContainer" unique_id=1201690902]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Open Chest"
 label_settings = SubResource("LabelSettings_vtql6")
 horizontal_alignment = 1
 
-[node name="Inventory" parent="." instance=ExtResource("7_nqw66")]
+[node name="Inventory" parent="." unique_id=1197938487 instance=ExtResource("7_nqw66")]
 visible = false
 layout_mode = 1
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_ahu28")
-}
-autoplay = "RESET"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=557936846]
+libraries/ = SubResource("AnimationLibrary_ahu28")
+autoplay = &"RESET"
 
-[node name="LootContainerDisplay" parent="." node_paths=PackedStringArray("inventory") instance=ExtResource("8_nmdyi")]
+[node name="LootContainerDisplay" parent="." unique_id=1042181897 node_paths=PackedStringArray("inventory") instance=ExtResource("8_nmdyi")]
 layout_mode = 1
 inventory = NodePath("../Inventory")

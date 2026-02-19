@@ -52,7 +52,7 @@ func take_damage(damage_in:float, is_critical:bool) -> void:
 
 func get_health_string() -> String:
 	# Format the health string to be "999/999"
-	return "%s/%s" % [current_health, max_health]
+	return "%s/%s" % [int(current_health), int(max_health)]
 
 
 func update_armor_value(armor_in:float) -> void:
