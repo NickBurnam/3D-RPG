@@ -24,7 +24,7 @@ func cache_gear(player:Player) -> void:
 
 func cache_player_data(player:Player) -> void:
 	# Cache the player current health
-	current_health = player.health_component.current_health
+	current_health = int(player.health_component.current_health)
 
 func get_inventory() -> Array:
 	# Return all items from this persistent list of inventory items

@@ -41,10 +41,10 @@ func take_damage(damage_in:float, is_critical:bool) -> void:
 		damage *= 2.0
 		
 		# Crits are red
-		VfxManager.spawn_damage_number(damage, Color.RED, body.global_position)
+		VfxManager.spawn_damage_number(int(damage), Color.RED, body.global_position)
 	else:
 		# Regular damage is white
-		VfxManager.spawn_damage_number(damage, Color.WHITE, body.global_position)
+		VfxManager.spawn_damage_number(int(damage), Color.WHITE, body.global_position)
 	
 	# Subtract the damage from the current health
 	current_health -= damage_in

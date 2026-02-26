@@ -1,6 +1,6 @@
-[gd_scene load_steps=24 format=3 uid="uid://bfk5apcyifgvh"]
+[gd_scene format=3 uid="uid://bfk5apcyifgvh"]
 
-[ext_resource type="Script" path="res://UserInteface/inventory.gd" id="1_58fgg"]
+[ext_resource type="Script" uid="uid://crmguqsb53d1k" path="res://UserInteface/inventory.gd" id="1_58fgg"]
 [ext_resource type="Texture2D" uid="uid://bohp5e1aw13hb" path="res://Assets/UIAssets/Window/window_header.png" id="1_k7jvd"]
 [ext_resource type="FontFile" uid="uid://b0awlsdj1flwo" path="res://Assets/Fonts/Libre_Caslon_Text/LibreCaslonText-Bold.ttf" id="2_ru4iq"]
 [ext_resource type="StyleBox" uid="uid://ctpw0yq0ee33n" path="res://UserInteface/ui_panel.tres" id="3_ryt7s"]
@@ -12,12 +12,12 @@
 [ext_resource type="Texture2D" uid="uid://stll621qowuo" path="res://Assets/UIAssets/Button Small/button_small_press.png" id="8_8ibl7"]
 [ext_resource type="Texture2D" uid="uid://y0ocvc3mpu5k" path="res://Assets/UIAssets/Button Small/button_small_hover.png" id="9_cqy8c"]
 
-[sub_resource type="Gradient" id="Gradient_8y8yt"]
+[sub_resource type="Gradient" id="Gradient_pwt18"]
 offsets = PackedFloat32Array(0, 0.8, 0.9)
-colors = PackedColorArray(0.12549, 0.0862745, 0.113725, 1, 0.670588, 0.176471, 0.164706, 1, 0.662745, 0.419608, 0.2, 1)
+colors = PackedColorArray(0.1254902, 0.08627451, 0.11372549, 0.19607843, 0.67058825, 0.1764706, 0.16470589, 0.19607843, 0.6627451, 0.41960785, 0.2, 0.39215687)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_evi14"]
-gradient = SubResource("Gradient_8y8yt")
+gradient = SubResource("Gradient_pwt18")
 fill_to = Vector2(0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_56wtb"]
@@ -29,21 +29,21 @@ font = ExtResource("2_ru4iq")
 font_size = 26
 font_color = Color(0.960784, 0.717647, 0.423529, 1)
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_2gu3c"]
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_c0vm0"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
 ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
 
 [sub_resource type="Sky" id="Sky_urbcx"]
-sky_material = SubResource("ProceduralSkyMaterial_2gu3c")
+sky_material = SubResource("ProceduralSkyMaterial_c0vm0")
 
-[sub_resource type="Environment" id="Environment_6uywc"]
+[sub_resource type="Environment" id="Environment_e3p1a"]
 background_mode = 2
 sky = SubResource("Sky_urbcx")
 tonemap_mode = 2
 glow_enabled = true
 
 [sub_resource type="World3D" id="World3D_f08qu"]
-environment = SubResource("Environment_6uywc")
+environment = SubResource("Environment_e3p1a")
 
 [sub_resource type="LabelSettings" id="LabelSettings_bp6yf"]
 font = ExtResource("2_ru4iq")
@@ -66,7 +66,7 @@ font = ExtResource("2_ru4iq")
 font_size = 26
 shadow_color = Color(0, 0, 0, 1)
 
-[node name="Inventory" type="Control"]
+[node name="Inventory" type="Control" unique_id=1981385522]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 15
@@ -76,7 +76,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_58fgg")
 
-[node name="BackgroundGradient" type="TextureRect" parent="."]
+[node name="BackgroundGradient" type="TextureRect" parent="." unique_id=666412945]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -85,7 +85,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("GradientTexture2D_evi14")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1085958889]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -97,15 +97,15 @@ theme_override_constants/margin_top = 32
 theme_override_constants/margin_right = 32
 theme_override_constants/margin_bottom = 32
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1048763023]
 layout_mode = 2
 
-[node name="HeaderTexture" type="TextureRect" parent="MarginContainer/VBoxContainer"]
+[node name="HeaderTexture" type="TextureRect" parent="MarginContainer/VBoxContainer" unique_id=173101749]
 layout_mode = 2
 texture = ExtResource("1_k7jvd")
 stretch_mode = 5
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HeaderTexture"]
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HeaderTexture" unique_id=943290360]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -117,31 +117,31 @@ label_settings = SubResource("LabelSettings_56wtb")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1725093978]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 0
 
-[node name="HeldItems" type="PanelContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="HeldItems" type="PanelContainer" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=2000896495]
 custom_minimum_size = Vector2(960, 0)
 layout_mode = 2
 theme_override_styles/panel = ExtResource("3_ryt7s")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/HeldItems"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/HeldItems" unique_id=186901801]
 layout_mode = 2
 
-[node name="ItemGrid" type="GridContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/HeldItems/VBoxContainer"]
+[node name="ItemGrid" type="GridContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/HeldItems/VBoxContainer" unique_id=2079266430]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 columns = 7
 
-[node name="GoldFrame" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer/HeldItems/VBoxContainer"]
+[node name="GoldFrame" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer/HeldItems/VBoxContainer" unique_id=652654086]
 layout_mode = 2
 size_flags_horizontal = 8
 texture = ExtResource("5_6c65m")
 
-[node name="GoldLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/HeldItems/VBoxContainer/GoldFrame"]
+[node name="GoldLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/HeldItems/VBoxContainer/GoldFrame" unique_id=1912797403]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
@@ -154,57 +154,57 @@ label_settings = SubResource("LabelSettings_7v0e6")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="SubViewportContainer" type="SubViewportContainer" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=1513077785]
 custom_minimum_size = Vector2(512, 0)
 layout_mode = 2
 stretch = true
 
-[node name="SubViewport" type="SubViewport" parent="MarginContainer/VBoxContainer/HBoxContainer/SubViewportContainer"]
+[node name="SubViewport" type="SubViewport" parent="MarginContainer/VBoxContainer/HBoxContainer/SubViewportContainer" unique_id=2119011707]
 world_3d = SubResource("World3D_f08qu")
 transparent_bg = true
 handle_input_locally = false
-size = Vector2i(512, 2)
+size = Vector2i(512, 868)
 render_target_update_mode = 4
 
-[node name="Rig" parent="MarginContainer/VBoxContainer/HBoxContainer/SubViewportContainer/SubViewport" groups=["PlayerRig"] instance=ExtResource("5_ds106")]
+[node name="Rig" parent="MarginContainer/VBoxContainer/HBoxContainer/SubViewportContainer/SubViewport" unique_id=1023934583 groups=["PlayerRig"] instance=ExtResource("5_ds106")]
 
-[node name="Camera3D" type="Camera3D" parent="MarginContainer/VBoxContainer/HBoxContainer/SubViewportContainer/SubViewport"]
+[node name="Camera3D" type="Camera3D" parent="MarginContainer/VBoxContainer/HBoxContainer/SubViewportContainer/SubViewport" unique_id=1021911064]
 transform = Transform3D(1, 0, 0, 0, 0.996195, 0.0871557, 0, -0.0871557, 0.996195, 0, 1.2, 3)
 fov = 45.0
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="MarginContainer/VBoxContainer/HBoxContainer/SubViewportContainer/SubViewport"]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="MarginContainer/VBoxContainer/HBoxContainer/SubViewportContainer/SubViewport" unique_id=614304204]
 transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
 shadow_enabled = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=424050167]
 custom_minimum_size = Vector2(384, 0)
 layout_mode = 2
 
-[node name="CharacterSheet" type="PanelContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="CharacterSheet" type="PanelContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=1276635501]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/panel = ExtResource("3_ryt7s")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/CharacterSheet"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/CharacterSheet" unique_id=724104127]
 layout_mode = 2
 
-[node name="LevelLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/CharacterSheet/VBoxContainer"]
+[node name="LevelLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/CharacterSheet/VBoxContainer" unique_id=942399000]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Level 1"
 label_settings = SubResource("LabelSettings_bp6yf")
 horizontal_alignment = 1
 
-[node name="GridContainer" type="GridContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/CharacterSheet/VBoxContainer"]
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/CharacterSheet/VBoxContainer" unique_id=1981659429]
 layout_mode = 2
 columns = 2
 
-[node name="Attribute" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/CharacterSheet/VBoxContainer/GridContainer"]
+[node name="Attribute" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/CharacterSheet/VBoxContainer/GridContainer" unique_id=1299802048]
 layout_mode = 2
 size_flags_horizontal = 6
 texture = ExtResource("4_xwb7l")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/CharacterSheet/VBoxContainer/GridContainer/Attribute"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/CharacterSheet/VBoxContainer/GridContainer/Attribute" unique_id=1497499737]
 layout_mode = 1
 anchors_preset = 14
 anchor_top = 0.5
@@ -213,26 +213,26 @@ anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="AttributeName" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/CharacterSheet/VBoxContainer/GridContainer/Attribute/VBoxContainer"]
+[node name="AttributeName" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/CharacterSheet/VBoxContainer/GridContainer/Attribute/VBoxContainer" unique_id=466497417]
 layout_mode = 2
 text = "Strength"
 label_settings = SubResource("LabelSettings_5uve5")
 horizontal_alignment = 1
 uppercase = true
 
-[node name="StrengthValue" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/CharacterSheet/VBoxContainer/GridContainer/Attribute/VBoxContainer"]
+[node name="StrengthValue" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/CharacterSheet/VBoxContainer/GridContainer/Attribute/VBoxContainer" unique_id=1297448575]
 unique_name_in_owner = true
 layout_mode = 2
 text = "100"
 label_settings = SubResource("LabelSettings_q50kb")
 horizontal_alignment = 1
 
-[node name="Attribute2" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/CharacterSheet/VBoxContainer/GridContainer"]
+[node name="Attribute2" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/CharacterSheet/VBoxContainer/GridContainer" unique_id=545714369]
 layout_mode = 2
 size_flags_horizontal = 6
 texture = ExtResource("4_xwb7l")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/CharacterSheet/VBoxContainer/GridContainer/Attribute2"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/CharacterSheet/VBoxContainer/GridContainer/Attribute2" unique_id=1438193272]
 layout_mode = 1
 anchors_preset = 14
 anchor_top = 0.5
@@ -241,7 +241,7 @@ anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="AttributeName" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/CharacterSheet/VBoxContainer/GridContainer/Attribute2/VBoxContainer"]
+[node name="AttributeName" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/CharacterSheet/VBoxContainer/GridContainer/Attribute2/VBoxContainer" unique_id=377204947]
 layout_mode = 2
 text = "Agility
 "
@@ -249,19 +249,19 @@ label_settings = SubResource("LabelSettings_5uve5")
 horizontal_alignment = 1
 uppercase = true
 
-[node name="AgilityValue" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/CharacterSheet/VBoxContainer/GridContainer/Attribute2/VBoxContainer"]
+[node name="AgilityValue" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/CharacterSheet/VBoxContainer/GridContainer/Attribute2/VBoxContainer" unique_id=322949984]
 unique_name_in_owner = true
 layout_mode = 2
 text = "100"
 label_settings = SubResource("LabelSettings_q50kb")
 horizontal_alignment = 1
 
-[node name="Attribute3" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/CharacterSheet/VBoxContainer/GridContainer"]
+[node name="Attribute3" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/CharacterSheet/VBoxContainer/GridContainer" unique_id=191845106]
 layout_mode = 2
 size_flags_horizontal = 6
 texture = ExtResource("4_xwb7l")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/CharacterSheet/VBoxContainer/GridContainer/Attribute3"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/CharacterSheet/VBoxContainer/GridContainer/Attribute3" unique_id=1859468120]
 layout_mode = 1
 anchors_preset = 14
 anchor_top = 0.5
@@ -270,26 +270,26 @@ anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="AttributeName" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/CharacterSheet/VBoxContainer/GridContainer/Attribute3/VBoxContainer"]
+[node name="AttributeName" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/CharacterSheet/VBoxContainer/GridContainer/Attribute3/VBoxContainer" unique_id=667317790]
 layout_mode = 2
 text = "Endurance"
 label_settings = SubResource("LabelSettings_5uve5")
 horizontal_alignment = 1
 uppercase = true
 
-[node name="EnduranceValue" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/CharacterSheet/VBoxContainer/GridContainer/Attribute3/VBoxContainer"]
+[node name="EnduranceValue" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/CharacterSheet/VBoxContainer/GridContainer/Attribute3/VBoxContainer" unique_id=464956054]
 unique_name_in_owner = true
 layout_mode = 2
 text = "100"
 label_settings = SubResource("LabelSettings_q50kb")
 horizontal_alignment = 1
 
-[node name="Attribute4" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/CharacterSheet/VBoxContainer/GridContainer"]
+[node name="Attribute4" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/CharacterSheet/VBoxContainer/GridContainer" unique_id=103129472]
 layout_mode = 2
 size_flags_horizontal = 6
 texture = ExtResource("4_xwb7l")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/CharacterSheet/VBoxContainer/GridContainer/Attribute4"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/CharacterSheet/VBoxContainer/GridContainer/Attribute4" unique_id=1833709921]
 layout_mode = 1
 anchors_preset = 14
 anchor_top = 0.5
@@ -298,24 +298,24 @@ anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="AttributeName" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/CharacterSheet/VBoxContainer/GridContainer/Attribute4/VBoxContainer"]
+[node name="AttributeName" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/CharacterSheet/VBoxContainer/GridContainer/Attribute4/VBoxContainer" unique_id=649955289]
 layout_mode = 2
 text = "Speed"
 label_settings = SubResource("LabelSettings_5uve5")
 horizontal_alignment = 1
 uppercase = true
 
-[node name="SpeedValue" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/CharacterSheet/VBoxContainer/GridContainer/Attribute4/VBoxContainer"]
+[node name="SpeedValue" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/CharacterSheet/VBoxContainer/GridContainer/Attribute4/VBoxContainer" unique_id=241871957]
 unique_name_in_owner = true
 layout_mode = 2
 text = "100"
 label_settings = SubResource("LabelSettings_q50kb")
 horizontal_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/CharacterSheet/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/CharacterSheet/VBoxContainer" unique_id=1703139752]
 layout_mode = 2
 
-[node name="AttributeName" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/CharacterSheet/VBoxContainer/HBoxContainer"]
+[node name="AttributeName" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/CharacterSheet/VBoxContainer/HBoxContainer" unique_id=1289662454]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Attack Damage"
@@ -323,7 +323,7 @@ label_settings = SubResource("LabelSettings_5uve5")
 horizontal_alignment = 1
 uppercase = true
 
-[node name="AttackValue" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/CharacterSheet/VBoxContainer/HBoxContainer"]
+[node name="AttackValue" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/CharacterSheet/VBoxContainer/HBoxContainer" unique_id=468544866]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -331,10 +331,10 @@ text = "100"
 label_settings = SubResource("LabelSettings_q50kb")
 horizontal_alignment = 1
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/CharacterSheet/VBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/CharacterSheet/VBoxContainer" unique_id=1859439260]
 layout_mode = 2
 
-[node name="AttributeName" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/CharacterSheet/VBoxContainer/HBoxContainer2"]
+[node name="AttributeName" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/CharacterSheet/VBoxContainer/HBoxContainer2" unique_id=1152950643]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Armor Protection"
@@ -342,7 +342,7 @@ label_settings = SubResource("LabelSettings_5uve5")
 horizontal_alignment = 1
 uppercase = true
 
-[node name="ArmorValue" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/CharacterSheet/VBoxContainer/HBoxContainer2"]
+[node name="ArmorValue" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/CharacterSheet/VBoxContainer/HBoxContainer2" unique_id=1322117581]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -350,42 +350,42 @@ text = "100"
 label_settings = SubResource("LabelSettings_q50kb")
 horizontal_alignment = 1
 
-[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/CharacterSheet/VBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/CharacterSheet/VBoxContainer" unique_id=1228925118]
 layout_mode = 2
 
-[node name="EquipmentLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/CharacterSheet/VBoxContainer"]
+[node name="EquipmentLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/CharacterSheet/VBoxContainer" unique_id=342264431]
 layout_mode = 2
 text = "Equipment"
 label_settings = SubResource("LabelSettings_bp6yf")
 horizontal_alignment = 1
 
-[node name="ItemSlotGrid" type="GridContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/CharacterSheet/VBoxContainer"]
+[node name="ItemSlotGrid" type="GridContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/CharacterSheet/VBoxContainer" unique_id=172813627]
 layout_mode = 2
 size_flags_vertical = 2
 columns = 2
 
-[node name="WeaponSlot" type="CenterContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/CharacterSheet/VBoxContainer/ItemSlotGrid"]
+[node name="WeaponSlot" type="CenterContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/CharacterSheet/VBoxContainer/ItemSlotGrid" unique_id=1363234025]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 6
 
-[node name="ShieldSlot" type="CenterContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/CharacterSheet/VBoxContainer/ItemSlotGrid"]
+[node name="ShieldSlot" type="CenterContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/CharacterSheet/VBoxContainer/ItemSlotGrid" unique_id=2057307224]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 6
 
-[node name="ArmorSlot" type="CenterContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/CharacterSheet/VBoxContainer/ItemSlotGrid"]
+[node name="ArmorSlot" type="CenterContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/CharacterSheet/VBoxContainer/ItemSlotGrid" unique_id=17437]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 6
 
-[node name="BackButton" type="TextureButton" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="BackButton" type="TextureButton" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=1886140385]
 custom_minimum_size = Vector2(200, 80)
 layout_mode = 2
 size_flags_horizontal = 8
@@ -396,7 +396,7 @@ texture_hover = ExtResource("9_cqy8c")
 ignore_texture_size = true
 stretch_mode = 4
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/BackButton"]
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/BackButton" unique_id=1184793542]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

@@ -100,7 +100,7 @@ func get_local_navigation_direction() -> Vector3:
 
 func _on_health_component_defeat() -> void:
 	# Increase the player xp
-	player.stats.xp += xp_value
+	player.stats.xp += int(xp_value)
 	
 	# Play the Defeat animation
 	rig.travel("Defeat")

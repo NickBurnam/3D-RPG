@@ -1,6 +1,12 @@
 extends Control
 class_name UserInterface
 
+const HUD_STATE:int = 0
+const INVENTORY_STATE:int = 1
+const SETTINGS_STATE:int = 2
+const LOOT_CONTAINER_STATE:int = 3
+var current_state:int = 0
+
 @onready var level_label: Label = %LevelLabel
 @onready var health_bar: TextureProgressBar = %HealthBar
 @onready var xp_bar: TextureProgressBar = %XPBar
@@ -9,16 +15,83 @@ class_name UserInterface
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var interact_item_name: Label = %InteractItemName
 @onready var loot_container_display: CenterContainer = $LootContainerDisplay
+@onready var settings: Control = $Settings
 
 @export var player:Player
 
 func _unhandled_input(event: InputEvent) -> void:
-	# Open/close the menu on button press
-	if event.is_action_pressed("open_menu"):
-		if inventory.visible:
-			close_menu()
-		else:
-			open_menu()
+	# Check if a loot container is open
+	if loot_container_display.visible:
+		current_state = LOOT_CONTAINER_STATE
+	
+	# State Machine
+	match current_state:
+		0: # HUD - Gameplay State
+			if event.is_action_pressed("open_menu"):
+				# Open the Inventory menu normally
+				current_state = INVENTORY_STATE
+				#call_deferred("open_inventory_menu")
+				open_inventory_menu()
+			elif event.is_action_pressed("open_pause_menu"):
+				# Open the Pause menu normally
+				current_state = SETTINGS_STATE
+				#call_deferred("open_pause_menu")
+				open_pause_menu()
+		1: # Inventory state
+			if event.is_action_pressed("open_menu"):
+				# Close the Inventory menu normally
+				current_state = HUD_STATE
+				#call_deferred("close_inventory_menu")
+				close_inventory_menu()
+			elif event.is_action_pressed("open_pause_menu"):
+				# Close the Inventory menu first
+				#call_deferred("close_inventory_menu")
+				close_inventory_menu()
+				
+				# Open the Pause menu normally
+				current_state = SETTINGS_STATE
+				#call_deferred("open_pause_menu")
+				open_pause_menu()
+		2: # Pause Menu state
+			if event.is_action_pressed("open_menu"):
+				# Close the Pause menu first
+				#call_deferred("close_pause_menu")
+				close_pause_menu()
+				
+				# Open the Inventory menu normally
+				current_state = INVENTORY_STATE
+				#call_deferred("open_inventory_menu")
+				open_inventory_menu()
+			elif event.is_action_pressed("open_pause_menu"):
+				# Close the Pause menu normally
+				current_state = HUD_STATE
+				#call_deferred("close_pause_menu")
+				close_pause_menu()
+		3: # Loot Container state
+			if event.is_action_pressed("open_menu"):
+				loot_container_display.close()
+				# Open the Inventory menu normally
+				current_state = INVENTORY_STATE
+				#call_deferred("open_inventory_menu")
+				open_inventory_menu()
+			elif event.is_action_pressed("open_pause_menu"):
+				loot_container_display.close()
+				# Open the Pause menu normally
+				current_state = SETTINGS_STATE
+				#call_deferred("open_pause_menu")
+				open_pause_menu()
+		_: # Default to HUD State
+			if event.is_action_pressed("open_menu"):
+				# Open the Inventory menu normally
+				current_state = INVENTORY_STATE
+				#call_deferred("open_inventory_menu")
+				open_inventory_menu()
+			elif event.is_action_pressed("open_pause_menu"):
+				# Open the Pause menu normally
+				current_state = SETTINGS_STATE
+				#call_deferred("open_pause_menu")
+				open_pause_menu()
+	
 
 
 func update_stats_display() -> void:
@@ -46,19 +119,50 @@ func update_health() -> void:
 	health_label.text = player.health_component.get_health_string()
 
 
-func open_menu() -> void:
+func _visible_mouse() -> void:
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+
+
+func _capture_mouse() -> void:
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+
+
+func open_inventory_menu() -> void:
 	# Make the inventory UI visible, pause the game, show the mouse, and update the current gear stats for the UI
 	inventory.visible = true
 	get_tree().paused = true
-	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	
+	# Defer mouse visible until after input finishes processing
+	call_deferred("_visible_mouse")
+	
 	inventory.update_gear_stats()
 
 
-func close_menu() -> void:
+func close_inventory_menu() -> void:
 	# Make the inventory invisible, unpause the game, capture the mouse
 	inventory.visible = false
 	get_tree().paused = false
-	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	
+	# Defer mouse capture until after input finishes processing
+	call_deferred("_capture_mouse")
+
+
+func open_pause_menu() -> void:
+	# Make the pause menu UI visible, pause the game, show the mouse, and update the current gear stats for the UI
+	settings.visible = true
+	get_tree().paused = true
+	
+	# Defer mouse visible until after input finishes processing
+	call_deferred("_visible_mouse")
+
+
+func close_pause_menu() -> void:
+	# Make the pause menu invisible, unpause the game, capture the mouse
+	settings.visible = false
+	get_tree().paused = false
+	
+	# Defer mouse capture until after input finishes processing
+	call_deferred("_capture_mouse")
 
 
 func update_interact_text(text:String) -> void:

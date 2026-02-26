@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://bahmomw5mvpt2" path="res://Assets/UIAssets/Unitframe/BlueBar.png" id="4_gvlo8"]
 [ext_resource type="PackedScene" uid="uid://bfk5apcyifgvh" path="res://UserInteface/inventory.tscn" id="7_nqw66"]
 [ext_resource type="PackedScene" uid="uid://brk7tb78tqdku" path="res://UserInteface/loot_container_display.tscn" id="8_nmdyi"]
+[ext_resource type="PackedScene" uid="uid://c58cttbqeep3f" path="res://UserInteface/settings.tscn" id="9_k0pge"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_es2hi"]
 font = ExtResource("3_0tbjh")
@@ -203,10 +204,14 @@ horizontal_alignment = 1
 visible = false
 layout_mode = 1
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=557936846]
-libraries/ = SubResource("AnimationLibrary_ahu28")
-autoplay = &"RESET"
+[node name="Settings" parent="." unique_id=737402625 instance=ExtResource("9_k0pge")]
+visible = false
+layout_mode = 1
 
 [node name="LootContainerDisplay" parent="." unique_id=1042181897 node_paths=PackedStringArray("inventory") instance=ExtResource("8_nmdyi")]
 layout_mode = 1
 inventory = NodePath("../Inventory")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=557936846]
+libraries/ = SubResource("AnimationLibrary_ahu28")
+autoplay = &"RESET"

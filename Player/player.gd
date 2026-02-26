@@ -22,6 +22,7 @@ var _attack_direction:Vector3 = Vector3.ZERO
 @export var stats:CharacterStats
 
 @onready var smooth_camera_arm: SpringArm3D = $SmoothCameraArm
+@onready var camera_3d: Camera3D = $SmoothCameraArm/Camera3D
 @onready var horizontal_pivot: Node3D = $HorizontalPivot
 @onready var vertical_pivot: Node3D = $HorizontalPivot/VerticalPivot
 @onready var rig_pivot: Node3D = $RigPivot
@@ -35,6 +36,12 @@ var _attack_direction:Vector3 = Vector3.ZERO
 
 
 func _ready() -> void:
+	# Connect the FOV signal
+	GlobalSettings.fov_value_changed.connect(_on_fov_value_changed)
+	
+	# Grab the saved FOV value
+	set_camera_fov(GlobalSettings.fov)
+	
 	# Capture the mouse
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	
@@ -203,6 +210,10 @@ func exponential_decay(a:float, b:float, decay:float, delta:float) -> float:
 	return b + (a - b) * exp(-decay * delta)
 
 
+func set_camera_fov(value:float) -> void:
+	camera_3d.fov = value
+
+
 func _on_health_component_defeat() -> void:
 	# Play the Defeat animation
 	rig.travel("Defeat")
@@ -215,3 +226,7 @@ func _on_health_component_defeat() -> void:
 func _on_rig_heavy_attack() -> void:
 	# Deal damage - now using the equiped weapon stats
 	area_attack.deal_damage(user_interface.inventory.get_weapon_value() + stats.get_base_strength(), stats.get_base_agility())
+
+
+func _on_fov_value_changed(value:float) -> void:
+	set_camera_fov(value)

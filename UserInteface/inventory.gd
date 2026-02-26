@@ -57,7 +57,7 @@ func get_weapon_value() -> int:
 	var damage:int = 0
 	if get_weapon():
 		damage += get_weapon().power
-	damage += player.stats.get_base_strength()
+	damage += int(player.stats.get_base_strength())
 	return damage
 
 
@@ -149,4 +149,4 @@ func load_items_from_persistent_data() -> void:
 
 func _on_back_button_pressed() -> void:
 	# Exit the menu
-	get_parent().close_menu()
+	get_parent().close_inventory_menu()

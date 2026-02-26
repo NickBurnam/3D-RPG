@@ -1,0 +1,8 @@
+[gd_resource type="LabelSettings" format=3 uid="uid://yfuc5qempjlp"]
+
+[ext_resource type="FontFile" uid="uid://b0awlsdj1flwo" path="res://Assets/Fonts/Libre_Caslon_Text/LibreCaslonText-Bold.ttf" id="1_8w7gc"]
+
+[resource]
+font = ExtResource("1_8w7gc")
+font_size = 26
+shadow_color = Color(0, 0, 0, 1)
