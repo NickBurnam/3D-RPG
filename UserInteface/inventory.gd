@@ -148,5 +148,5 @@ func load_items_from_persistent_data() -> void:
 
 
 func _on_back_button_pressed() -> void:
-	# Exit the menu
+	# Exit the menu - automatically changes the menu state machine within
 	get_parent().close_inventory_menu()

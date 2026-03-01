@@ -1,5 +1,7 @@
 extends Node
 
+signal resolution_value_changed
+signal scaling_3d_value_changed
 signal ssao_value_changed
 signal ssil_value_changed
 signal sdfgi_value_changed
@@ -9,6 +11,8 @@ signal color_adjustment_enabled_value_changed
 signal fov_value_changed
 
 # Store the target Value
+var resolution:Vector2i = Vector2i(1920,1080)
+var scaling_3d:float = 1.0
 var ssao_enabled:int = false
 var ssil_enabled:int = false
 var sdfgi_enabled:int = false
@@ -16,6 +20,17 @@ var glow_enabled:int = false
 var volumetric_fog_enabled:int = false
 var color_adjustment_enabled:int = false
 var fov:float = 75.0
+
+
+func set_resolution(value:Vector2i) -> void:
+	resolution = value
+	resolution_value_changed.emit(value)
+
+
+func set_scaling_3d(value:float) -> void:
+	scaling_3d = value
+	scaling_3d_value_changed.emit(value)
+
 
 func set_ssao_value(value:int) -> void:
 	ssao_enabled = value

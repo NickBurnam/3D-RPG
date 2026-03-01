@@ -139,6 +139,9 @@ func open_inventory_menu() -> void:
 
 
 func close_inventory_menu() -> void:
+	# Change state to default HUD (harmless)
+	current_state = HUD_STATE
+	
 	# Make the inventory invisible, unpause the game, capture the mouse
 	inventory.visible = false
 	get_tree().paused = false
@@ -157,6 +160,9 @@ func open_pause_menu() -> void:
 
 
 func close_pause_menu() -> void:
+	# Change state to default HUD (harmless)
+	current_state = HUD_STATE
+	
 	# Make the pause menu invisible, unpause the game, capture the mouse
 	settings.visible = false
 	get_tree().paused = false

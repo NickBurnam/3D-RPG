@@ -6,6 +6,10 @@ extends Control
 @onready var anti_aliasing_option: OptionButton = %AntiAliasingOption
 @onready var v_sync_option: OptionButton = %VSyncOption
 @onready var window_mode_option: OptionButton = %WindowModeOption
+@onready var resolution_option: OptionButton = %ResolutionOption
+@onready var scaling_type_option: OptionButton = %ScalingTypeOption
+@onready var fsr_options_h_box_container: HBoxContainer = %FSROptionsHBoxContainer
+@onready var fsr_options_option: OptionButton = %FSROptionsOption
 @onready var max_fps_h_slider: HSlider = %MaxFpsHSlider
 @onready var max_fps_value_label: Label = %MaxFpsValueLabel
 @onready var shadow_filter_quality_option: OptionButton = %ShadowFilterQualityOption
@@ -24,14 +28,38 @@ extends Control
 @onready var fov_slider: HSlider = %FOVSlider
 @onready var fov_value_label: Label = %FOVValueLabel
 
+# Define list of resolutions for windowed mode
+var resolutions:Dictionary = {
+	"3840x2160": Vector2i(3840,2160),
+	"3440x1440": Vector2i(3440,1440),
+	"2560x1440": Vector2i(2560,1440),
+	"1920x1080": Vector2i(1920,1080),
+	"1366x768": Vector2i(1366,768),
+	"1280x800": Vector2i(1280,800),
+	"1280x720": Vector2i(1280,720),
+	"1440x900": Vector2i(1440,900),
+	"1600x900": Vector2i(1600,900),
+	"1024x600": Vector2i(1024,600),
+	"800x600": Vector2i(800,600)
+}
 
 func _ready() -> void:
+	# Initialize Resolution Options
+	for res in resolutions.keys():
+		resolution_option.add_item(res)
+	
+	# Set the UI scale
+	get_window().content_scale_size = Vector2i(1920, 1080)
+	
 	# Load the user saved settings from file
-	load_slider("3d_scaling", scaling_3d_slider)
-	load_option_button("anti_aliasing", anti_aliasing_option)
-	load_option_button("vsync", v_sync_option)
 	load_option_button("window_mode", window_mode_option)
+	load_option_button("resolution", resolution_option)
+	load_option_button("scaling_type", scaling_type_option)
+	load_option_button("fsr_options", fsr_options_option)
+	load_slider("3d_scaling", scaling_3d_slider)
+	load_option_button("vsync", v_sync_option)
 	load_slider("max_fps", max_fps_h_slider)
+	load_option_button("anti_aliasing", anti_aliasing_option)
 	load_option_button("shadow_filter_quality", shadow_filter_quality_option)
 	load_option_button("ssao", ssao_option)
 	load_option_button("ssil", ssil_option)
@@ -43,11 +71,15 @@ func _ready() -> void:
 	load_slider("fov", fov_slider)
 	
 	# Apply the settings
-	set_scaling_3d(scaling_3d_slider.value)
-	set_anti_aliasing(anti_aliasing_option.selected)
-	set_vsync(v_sync_option.selected)
 	set_window_mode(window_mode_option.selected)
+	set_resolution(resolution_option.selected)
+	set_scaling_type(scaling_type_option.selected)
+	if get_viewport().scaling_3d_mode == Viewport.SCALING_3D_MODE_FSR or get_viewport().scaling_3d_mode == Viewport.SCALING_3D_MODE_FSR2:
+		set_fsr_options(fsr_options_option.selected)
+	set_scaling_3d(scaling_3d_slider.value)
+	set_vsync(v_sync_option.selected)
 	set_max_fps(int(max_fps_h_slider.value))
+	set_anti_aliasing(anti_aliasing_option.selected)
 	set_shadow_filter_quality(shadow_filter_quality_option.selected)
 	set_ssao(ssao_option.selected)
 	set_ssil(ssil_option.selected)
@@ -79,11 +111,56 @@ func load_option_button(save_name:String, option_button:OptionButton) -> void:
 		save.close()
 
 
+func set_scaling_type(index:int) -> void:
+	save_setting("scaling_type", index)
+	var scaling_value:float = scaling_3d_slider.value
+	match index:
+		1: # AMD FSR 1.0
+			get_viewport().scaling_3d_mode = Viewport.SCALING_3D_MODE_FSR
+			fsr_options_h_box_container.visible = true
+			scaling_3d_slider.editable = false
+			set_fsr_options(fsr_options_option.selected)
+		2: # AMD FSR 2.2
+			get_viewport().scaling_3d_mode = Viewport.SCALING_3D_MODE_FSR2
+			fsr_options_h_box_container.visible = true
+			scaling_3d_slider.editable = false
+			set_fsr_options(fsr_options_option.selected)
+		_: # Default to BILINEAR
+			get_viewport().scaling_3d_mode = Viewport.SCALING_3D_MODE_BILINEAR
+			fsr_options_h_box_container.visible = false
+			scaling_3d_slider.editable = true
+			set_scaling_3d(scaling_value) # Reapply the value when switching to bilinear from FSR
+
+
+func set_fsr_options(index:int) -> void:
+	save_setting("fsr_options", index)
+	var scaling_val:float
+	match index:
+		1: # Balanced - 0.59
+			scaling_val = 0.59
+		2: # Quality - 0.67
+			scaling_val = 0.67
+		3: # Ultra Quality - 0.77
+			scaling_val = 0.77
+		_: # Default to Performance - 0.5
+			scaling_val = 0.5
+	
+	# Update the slider and set the value
+	scaling_3d_slider.set_value_no_signal(scaling_val)
+	set_scaling_3d(scaling_val)
+
+
+func update_scaling_3d_text(value:float) -> void:
+	var formatted_string:String = "%.0f" % (value * 100)
+	var scaled_res_string:String = str(int(round(get_window().get_size().x * value))) + "x" + str(int(round(get_window().get_size().y * value)))
+	scaling_3d_value_label.text = formatted_string + "% " + scaled_res_string
+
+
 func set_scaling_3d(value:float) -> void:
 	save_setting("3d_scaling", value)
+	GlobalSettings.set_scaling_3d(value)
 	get_viewport().scaling_3d_scale = value
-	var formatted_string:String = "%.2f" % (value * 100)
-	scaling_3d_value_label.text = formatted_string + "%"
+	update_scaling_3d_text(value)
 
 
 func set_anti_aliasing_options(msaa:Viewport.MSAA, taa:bool, screenspace_aa:Viewport.ScreenSpaceAA) -> void:
@@ -124,12 +201,55 @@ func set_window_mode(index:int) -> void:
 	match index:
 		0: # Windowed
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+			resolution_option.disabled = false
 		1: # Fullscreen
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+			resolution_option.disabled = true
 		2: # Exclusive Fullscreen
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN)
-		_: # Default to Exclusive Fullscreen
-			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN)
+			resolution_option.disabled = true
+	
+	# Wait one frame before applying scaling
+	await get_tree().process_frame
+	
+	get_viewport().scaling_3d_scale = GlobalSettings.scaling_3d
+	
+	# Wait one frame before applying resolution
+	await get_tree().process_frame
+
+	set_resolution(resolution_option.selected)
+
+
+func set_resolution_text() -> void:
+	var res_text:String = str(get_window().get_size().x) + "x" + str(get_window().get_size().y)
+	resolution_option.set_text(res_text)
+	
+	update_scaling_3d_text(scaling_3d_slider.value)
+
+
+func set_resolution(index:int) -> void:
+	save_setting("resolution", index)
+	if index >= resolutions.size():
+		return
+	
+	var res:Vector2i = resolutions.values().get(index)
+	
+	# This works correctly for windowed only
+	DisplayServer.window_set_size(res)
+	
+	# Save the value to GlobalSettings
+	GlobalSettings.set_resolution(res)
+	
+	# Center the windows
+	@warning_ignore("integer_division")
+	var center_screen:Vector2i = DisplayServer.screen_get_position() + DisplayServer.screen_get_size() / 2
+	var window_size:Vector2i = get_window().get_size_with_decorations()
+	@warning_ignore("integer_division")
+	get_window().position = center_screen - window_size / 2
+	
+	await get_tree().process_frame
+	
+	set_resolution_text()
 
 
 func set_max_fps(value:int) -> void:
@@ -210,7 +330,7 @@ func set_fov(value:float) -> void:
 
 
 func _on_back_button_pressed() -> void:
-	# Exit the menu
+	# Exit the menu - automatically changes the menu state machine within
 	get_parent().close_pause_menu()
 
 
@@ -228,6 +348,10 @@ func _on_v_sync_option_item_selected(index: int) -> void:
 
 func _on_window_mode_option_item_selected(index: int) -> void:
 	set_window_mode(index)
+
+
+func _on_resolution_option_item_selected(index: int) -> void:
+	set_resolution(index)
 
 
 func _on_max_fps_h_slider_value_changed(value: float) -> void:
@@ -268,3 +392,11 @@ func _on_master_volume_slider_value_changed(value: float) -> void:
 
 func _on_fov_slider_value_changed(value: float) -> void:
 	set_fov(value)
+
+
+func _on_scaling_type_option_item_selected(index: int) -> void:
+	set_scaling_type(index)
+
+
+func _on_fsr_optionse_option_item_selected(index: int) -> void:
+	set_fsr_options(index)

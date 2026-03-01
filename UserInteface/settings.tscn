@@ -99,6 +99,110 @@ layout_mode = 2
 text = "Graphics"
 label_settings = ExtResource("3_ufvyb")
 
+[node name="WindowModeHBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/GraphicsSectionMarginContainer/VBoxContainer" unique_id=128344090]
+layout_mode = 2
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="WindowModeLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/GraphicsSectionMarginContainer/VBoxContainer/WindowModeHBoxContainer" unique_id=819926281]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Window Mode"
+label_settings = ExtResource("4_3cby3")
+
+[node name="WindowModeOption" type="OptionButton" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/GraphicsSectionMarginContainer/VBoxContainer/WindowModeHBoxContainer" unique_id=1422066433]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(320, 0)
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 8
+theme_override_fonts/font = ExtResource("2_mygfd")
+selected = 2
+item_count = 3
+popup/item_0/text = "Windowed"
+popup/item_0/id = 0
+popup/item_1/text = "Borderless Fullscreen"
+popup/item_1/id = 1
+popup/item_2/text = "Exclusive Fullscreen"
+popup/item_2/id = 2
+
+[node name="ResolutionHBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/GraphicsSectionMarginContainer/VBoxContainer" unique_id=941218181]
+layout_mode = 2
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="ResolutionLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/GraphicsSectionMarginContainer/VBoxContainer/ResolutionHBoxContainer" unique_id=1350904244]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Resolution"
+label_settings = ExtResource("4_3cby3")
+
+[node name="ResolutionOption" type="OptionButton" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/GraphicsSectionMarginContainer/VBoxContainer/ResolutionHBoxContainer" unique_id=1118972655]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(320, 0)
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 8
+theme_override_fonts/font = ExtResource("2_mygfd")
+
+[node name="ScalingTypeHBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/GraphicsSectionMarginContainer/VBoxContainer" unique_id=378964737]
+layout_mode = 2
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="ScalingTypeLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/GraphicsSectionMarginContainer/VBoxContainer/ScalingTypeHBoxContainer" unique_id=527615124]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Scaler"
+label_settings = ExtResource("4_3cby3")
+
+[node name="ScalingTypeOption" type="OptionButton" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/GraphicsSectionMarginContainer/VBoxContainer/ScalingTypeHBoxContainer" unique_id=894278033]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(320, 0)
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 8
+theme_override_fonts/font = ExtResource("2_mygfd")
+selected = 0
+item_count = 3
+popup/item_0/text = "Bilinear"
+popup/item_0/id = 0
+popup/item_1/text = "AMD FSR 1.0"
+popup/item_1/id = 1
+popup/item_2/text = "AMD FSR 2.2"
+popup/item_2/id = 2
+
+[node name="FSROptionsHBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/GraphicsSectionMarginContainer/VBoxContainer" unique_id=1008985736]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="FSROptionsLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/GraphicsSectionMarginContainer/VBoxContainer/FSROptionsHBoxContainer" unique_id=1296120824]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "FSR Options"
+label_settings = ExtResource("4_3cby3")
+
+[node name="FSROptionsOption" type="OptionButton" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/GraphicsSectionMarginContainer/VBoxContainer/FSROptionsHBoxContainer" unique_id=1600775778]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(320, 0)
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 8
+theme_override_fonts/font = ExtResource("2_mygfd")
+selected = 0
+item_count = 4
+popup/item_0/text = "Performance"
+popup/item_0/id = 0
+popup/item_1/text = "Balanced"
+popup/item_1/id = 1
+popup/item_2/text = "Quality"
+popup/item_2/id = 2
+popup/item_3/text = "Ultra Quality"
+popup/item_3/id = 3
+
 [node name="Scaling3DHBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/GraphicsSectionMarginContainer/VBoxContainer" unique_id=988510003]
 layout_mode = 2
 size_flags_vertical = 4
@@ -117,7 +221,7 @@ layout_mode = 2
 size_flags_horizontal = 10
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/GraphicsSectionMarginContainer/VBoxContainer/Scaling3DHBoxContainer/MarginContainer" unique_id=1979224203]
-custom_minimum_size = Vector2(220, 0)
+custom_minimum_size = Vector2(320, 0)
 layout_mode = 2
 
 [node name="Scaling3DSlider" type="HSlider" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/GraphicsSectionMarginContainer/VBoxContainer/Scaling3DHBoxContainer/MarginContainer/HBoxContainer" unique_id=100346296]
@@ -126,15 +230,76 @@ custom_minimum_size = Vector2(160, 0)
 layout_mode = 2
 size_flags_horizontal = 2
 min_value = 0.25
-max_value = 1.0
-step = 0.05
+max_value = 2.0
+step = 0.01
 value = 1.0
 
 [node name="Scaling3DValueLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/GraphicsSectionMarginContainer/VBoxContainer/Scaling3DHBoxContainer/MarginContainer/HBoxContainer" unique_id=1085914069]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 8
-text = "100%"
+text = "100% - 1920x1080"
+label_settings = ExtResource("4_3cby3")
+
+[node name="VSyncHBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/GraphicsSectionMarginContainer/VBoxContainer" unique_id=2066203907]
+layout_mode = 2
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="VSyncLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/GraphicsSectionMarginContainer/VBoxContainer/VSyncHBoxContainer" unique_id=1568840838]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "V-Sync"
+label_settings = ExtResource("4_3cby3")
+
+[node name="VSyncOption" type="OptionButton" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/GraphicsSectionMarginContainer/VBoxContainer/VSyncHBoxContainer" unique_id=615572284]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(320, 0)
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 8
+theme_override_fonts/font = ExtResource("2_mygfd")
+selected = 1
+item_count = 2
+popup/item_0/text = "Off"
+popup/item_0/id = 0
+popup/item_1/text = "On"
+popup/item_1/id = 1
+
+[node name="MaxFpsHBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/GraphicsSectionMarginContainer/VBoxContainer" unique_id=404459754]
+layout_mode = 2
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="MaxFpsLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/GraphicsSectionMarginContainer/VBoxContainer/MaxFpsHBoxContainer" unique_id=715322372]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Max FPS"
+label_settings = ExtResource("4_3cby3")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/GraphicsSectionMarginContainer/VBoxContainer/MaxFpsHBoxContainer" unique_id=561276955]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+size_flags_horizontal = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/GraphicsSectionMarginContainer/VBoxContainer/MaxFpsHBoxContainer/MarginContainer" unique_id=2130256324]
+custom_minimum_size = Vector2(320, 0)
+layout_mode = 2
+
+[node name="MaxFpsHSlider" type="HSlider" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/GraphicsSectionMarginContainer/VBoxContainer/MaxFpsHBoxContainer/MarginContainer/HBoxContainer" unique_id=1275892202]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 2
+size_flags_horizontal = 2
+min_value = 1.0
+max_value = 241.0
+value = 60.0
+
+[node name="MaxFpsValueLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/GraphicsSectionMarginContainer/VBoxContainer/MaxFpsHBoxContainer/MarginContainer/HBoxContainer" unique_id=1950445323]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 8
+text = "60"
 label_settings = ExtResource("4_3cby3")
 
 [node name="AntiAliasingHBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/GraphicsSectionMarginContainer/VBoxContainer" unique_id=1530947197]
@@ -150,7 +315,7 @@ label_settings = ExtResource("4_3cby3")
 
 [node name="AntiAliasingOption" type="OptionButton" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/GraphicsSectionMarginContainer/VBoxContainer/AntiAliasingHBoxContainer" unique_id=1216097401]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(250, 0)
+custom_minimum_size = Vector2(320, 0)
 layout_mode = 2
 size_flags_horizontal = 10
 size_flags_vertical = 8
@@ -170,94 +335,6 @@ popup/item_4/id = 4
 popup/item_5/text = "MSAA 8X"
 popup/item_5/id = 5
 
-[node name="VSyncHBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/GraphicsSectionMarginContainer/VBoxContainer" unique_id=2066203907]
-layout_mode = 2
-theme_override_constants/separation = 50
-alignment = 1
-
-[node name="VSyncLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/GraphicsSectionMarginContainer/VBoxContainer/VSyncHBoxContainer" unique_id=1568840838]
-layout_mode = 2
-size_flags_horizontal = 0
-text = "V-Sync"
-label_settings = ExtResource("4_3cby3")
-
-[node name="VSyncOption" type="OptionButton" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/GraphicsSectionMarginContainer/VBoxContainer/VSyncHBoxContainer" unique_id=615572284]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(250, 0)
-layout_mode = 2
-size_flags_horizontal = 10
-size_flags_vertical = 8
-theme_override_fonts/font = ExtResource("2_mygfd")
-selected = 1
-item_count = 2
-popup/item_0/text = "Off"
-popup/item_0/id = 0
-popup/item_1/text = "On"
-popup/item_1/id = 1
-
-[node name="WindowModeHBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/GraphicsSectionMarginContainer/VBoxContainer" unique_id=128344090]
-layout_mode = 2
-theme_override_constants/separation = 50
-alignment = 1
-
-[node name="WindowModeLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/GraphicsSectionMarginContainer/VBoxContainer/WindowModeHBoxContainer" unique_id=819926281]
-layout_mode = 2
-size_flags_horizontal = 0
-text = "Window Mode"
-label_settings = ExtResource("4_3cby3")
-
-[node name="WindowModeOption" type="OptionButton" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/GraphicsSectionMarginContainer/VBoxContainer/WindowModeHBoxContainer" unique_id=1422066433]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(250, 0)
-layout_mode = 2
-size_flags_horizontal = 10
-size_flags_vertical = 8
-theme_override_fonts/font = ExtResource("2_mygfd")
-selected = 2
-item_count = 3
-popup/item_0/text = "Windowed"
-popup/item_0/id = 0
-popup/item_1/text = "Fullscreen"
-popup/item_1/id = 1
-popup/item_2/text = "Exclusive Fullscreen"
-popup/item_2/id = 2
-
-[node name="MaxFpsHBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/GraphicsSectionMarginContainer/VBoxContainer" unique_id=404459754]
-layout_mode = 2
-theme_override_constants/separation = 50
-alignment = 1
-
-[node name="MaxFpsLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/GraphicsSectionMarginContainer/VBoxContainer/MaxFpsHBoxContainer" unique_id=715322372]
-layout_mode = 2
-size_flags_horizontal = 0
-text = "Max FPS"
-label_settings = ExtResource("4_3cby3")
-
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/GraphicsSectionMarginContainer/VBoxContainer/MaxFpsHBoxContainer" unique_id=561276955]
-custom_minimum_size = Vector2(250, 0)
-layout_mode = 2
-size_flags_horizontal = 10
-
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/GraphicsSectionMarginContainer/VBoxContainer/MaxFpsHBoxContainer/MarginContainer" unique_id=2130256324]
-custom_minimum_size = Vector2(220, 0)
-layout_mode = 2
-
-[node name="MaxFpsHSlider" type="HSlider" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/GraphicsSectionMarginContainer/VBoxContainer/MaxFpsHBoxContainer/MarginContainer/HBoxContainer" unique_id=1275892202]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(160, 0)
-layout_mode = 2
-size_flags_horizontal = 2
-min_value = 1.0
-max_value = 241.0
-value = 60.0
-
-[node name="MaxFpsValueLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/GraphicsSectionMarginContainer/VBoxContainer/MaxFpsHBoxContainer/MarginContainer/HBoxContainer" unique_id=1950445323]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 8
-text = "60"
-label_settings = ExtResource("4_3cby3")
-
 [node name="ShadowFilterQualityHBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/GraphicsSectionMarginContainer/VBoxContainer" unique_id=437615095]
 layout_mode = 2
 theme_override_constants/separation = 50
@@ -271,7 +348,7 @@ label_settings = ExtResource("4_3cby3")
 
 [node name="ShadowFilterQualityOption" type="OptionButton" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/GraphicsSectionMarginContainer/VBoxContainer/ShadowFilterQualityHBoxContainer" unique_id=1105876288]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(250, 0)
+custom_minimum_size = Vector2(320, 0)
 layout_mode = 2
 size_flags_horizontal = 10
 size_flags_vertical = 8
@@ -304,7 +381,7 @@ label_settings = ExtResource("4_3cby3")
 
 [node name="SSAOOption" type="OptionButton" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/GraphicsSectionMarginContainer/VBoxContainer/SSAOHBoxContainer" unique_id=1560423621]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(250, 0)
+custom_minimum_size = Vector2(320, 0)
 layout_mode = 2
 size_flags_horizontal = 10
 size_flags_vertical = 8
@@ -329,7 +406,7 @@ label_settings = ExtResource("4_3cby3")
 
 [node name="SSILOption" type="OptionButton" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/GraphicsSectionMarginContainer/VBoxContainer/SSILHBoxContainer" unique_id=1457457546]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(250, 0)
+custom_minimum_size = Vector2(320, 0)
 layout_mode = 2
 size_flags_horizontal = 10
 size_flags_vertical = 8
@@ -354,7 +431,7 @@ label_settings = ExtResource("4_3cby3")
 
 [node name="SDFGIOption" type="OptionButton" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/GraphicsSectionMarginContainer/VBoxContainer/SDFGIHBoxContainer" unique_id=679375349]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(250, 0)
+custom_minimum_size = Vector2(320, 0)
 layout_mode = 2
 size_flags_horizontal = 10
 size_flags_vertical = 8
@@ -379,7 +456,7 @@ label_settings = ExtResource("4_3cby3")
 
 [node name="GlowOption" type="OptionButton" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/GraphicsSectionMarginContainer/VBoxContainer/GlowHBoxContainer" unique_id=1310927835]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(250, 0)
+custom_minimum_size = Vector2(320, 0)
 layout_mode = 2
 size_flags_horizontal = 10
 size_flags_vertical = 8
@@ -404,7 +481,7 @@ label_settings = ExtResource("4_3cby3")
 
 [node name="VolumetricFogOption" type="OptionButton" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/GraphicsSectionMarginContainer/VBoxContainer/VolumetricFogHBoxContainer" unique_id=1258935912]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(250, 0)
+custom_minimum_size = Vector2(320, 0)
 layout_mode = 2
 size_flags_horizontal = 10
 size_flags_vertical = 8
@@ -429,7 +506,7 @@ label_settings = ExtResource("4_3cby3")
 
 [node name="ColorAdjustmentsOption" type="OptionButton" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/GraphicsSectionMarginContainer/VBoxContainer/ColorAdjustmentsHBoxContainer" unique_id=283543804]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(250, 0)
+custom_minimum_size = Vector2(320, 0)
 layout_mode = 2
 size_flags_horizontal = 10
 size_flags_vertical = 8
@@ -470,7 +547,7 @@ layout_mode = 2
 size_flags_horizontal = 10
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/AudioSectionMarginContainer/VBoxContainer/MasterVolumeHBoxContainer/MarginContainer" unique_id=1872037533]
-custom_minimum_size = Vector2(220, 0)
+custom_minimum_size = Vector2(320, 0)
 layout_mode = 2
 
 [node name="MasterVolumeSlider" type="HSlider" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/AudioSectionMarginContainer/VBoxContainer/MasterVolumeHBoxContainer/MarginContainer/HBoxContainer" unique_id=453163470]
@@ -518,7 +595,7 @@ layout_mode = 2
 size_flags_horizontal = 10
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/GameplaySectionMarginContainer/VBoxContainer/FOVHBoxContainer/MarginContainer" unique_id=1768480438]
-custom_minimum_size = Vector2(220, 0)
+custom_minimum_size = Vector2(320, 0)
 layout_mode = 2
 
 [node name="FOVSlider" type="HSlider" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/GameplaySectionMarginContainer/VBoxContainer/FOVHBoxContainer/MarginContainer/HBoxContainer" unique_id=2131595716]
@@ -560,11 +637,14 @@ label_settings = SubResource("LabelSettings_ysqk7")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[connection signal="value_changed" from="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/GraphicsSectionMarginContainer/VBoxContainer/Scaling3DHBoxContainer/MarginContainer/HBoxContainer/Scaling3DSlider" to="." method="_on_scaling_3d_slider_value_changed"]
-[connection signal="item_selected" from="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/GraphicsSectionMarginContainer/VBoxContainer/AntiAliasingHBoxContainer/AntiAliasingOption" to="." method="_on_anti_aliasing_option_item_selected"]
-[connection signal="item_selected" from="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/GraphicsSectionMarginContainer/VBoxContainer/VSyncHBoxContainer/VSyncOption" to="." method="_on_v_sync_option_item_selected"]
 [connection signal="item_selected" from="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/GraphicsSectionMarginContainer/VBoxContainer/WindowModeHBoxContainer/WindowModeOption" to="." method="_on_window_mode_option_item_selected"]
+[connection signal="item_selected" from="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/GraphicsSectionMarginContainer/VBoxContainer/ResolutionHBoxContainer/ResolutionOption" to="." method="_on_resolution_option_item_selected"]
+[connection signal="item_selected" from="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/GraphicsSectionMarginContainer/VBoxContainer/ScalingTypeHBoxContainer/ScalingTypeOption" to="." method="_on_scaling_type_option_item_selected"]
+[connection signal="item_selected" from="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/GraphicsSectionMarginContainer/VBoxContainer/FSROptionsHBoxContainer/FSROptionsOption" to="." method="_on_fsr_optionse_option_item_selected"]
+[connection signal="value_changed" from="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/GraphicsSectionMarginContainer/VBoxContainer/Scaling3DHBoxContainer/MarginContainer/HBoxContainer/Scaling3DSlider" to="." method="_on_scaling_3d_slider_value_changed"]
+[connection signal="item_selected" from="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/GraphicsSectionMarginContainer/VBoxContainer/VSyncHBoxContainer/VSyncOption" to="." method="_on_v_sync_option_item_selected"]
 [connection signal="value_changed" from="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/GraphicsSectionMarginContainer/VBoxContainer/MaxFpsHBoxContainer/MarginContainer/HBoxContainer/MaxFpsHSlider" to="." method="_on_max_fps_h_slider_value_changed"]
+[connection signal="item_selected" from="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/GraphicsSectionMarginContainer/VBoxContainer/AntiAliasingHBoxContainer/AntiAliasingOption" to="." method="_on_anti_aliasing_option_item_selected"]
 [connection signal="item_selected" from="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/GraphicsSectionMarginContainer/VBoxContainer/ShadowFilterQualityHBoxContainer/ShadowFilterQualityOption" to="." method="_on_shadow_filter_quality_option_item_selected"]
 [connection signal="item_selected" from="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/GraphicsSectionMarginContainer/VBoxContainer/SSAOHBoxContainer/SSAOOption" to="." method="_on_ssao_option_item_selected"]
 [connection signal="item_selected" from="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/GraphicsSectionMarginContainer/VBoxContainer/SSILHBoxContainer/SSILOption" to="." method="_on_ssil_option_item_selected"]
