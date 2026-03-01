@@ -1,6 +1,6 @@
-[gd_scene load_steps=10 format=3 uid="uid://brk7tb78tqdku"]
+[gd_scene format=3 uid="uid://brk7tb78tqdku"]
 
-[ext_resource type="Script" path="res://UserInteface/loot_container_display.gd" id="1_lxwrp"]
+[ext_resource type="Script" uid="uid://cdn061geib16u" path="res://UserInteface/loot_container_display.gd" id="1_lxwrp"]
 [ext_resource type="StyleBox" uid="uid://ctpw0yq0ee33n" path="res://UserInteface/ui_panel.tres" id="2_m7ufw"]
 [ext_resource type="Texture2D" uid="uid://bohp5e1aw13hb" path="res://Assets/UIAssets/Window/window_header.png" id="3_a6ghs"]
 [ext_resource type="FontFile" uid="uid://b0awlsdj1flwo" path="res://Assets/Fonts/Libre_Caslon_Text/LibreCaslonText-Bold.ttf" id="4_waq5r"]
@@ -17,7 +17,7 @@ font = ExtResource("4_waq5r")
 font_size = 26
 shadow_color = Color(0, 0, 0, 1)
 
-[node name="LootContainerDisplay" type="CenterContainer"]
+[node name="LootContainerDisplay" type="CenterContainer" unique_id=1385936247]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -25,20 +25,20 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_lxwrp")
 
-[node name="PanelContainer" type="PanelContainer" parent="."]
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=467791239]
 layout_mode = 2
 theme_override_styles/panel = ExtResource("2_m7ufw")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer" unique_id=1484457223]
 layout_mode = 2
 
-[node name="TitleTexture" type="TextureRect" parent="PanelContainer/VBoxContainer"]
+[node name="TitleTexture" type="TextureRect" parent="PanelContainer/VBoxContainer" unique_id=1711003353]
 layout_mode = 2
 texture = ExtResource("3_a6ghs")
 expand_mode = 5
 stretch_mode = 4
 
-[node name="TitleLabel" type="Label" parent="PanelContainer/VBoxContainer/TitleTexture"]
+[node name="TitleLabel" type="Label" parent="PanelContainer/VBoxContainer/TitleTexture" unique_id=1362226481]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -50,12 +50,12 @@ label_settings = SubResource("LabelSettings_mh65x")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="GridContainer" type="GridContainer" parent="PanelContainer/VBoxContainer"]
+[node name="GridContainer" type="GridContainer" parent="PanelContainer/VBoxContainer" unique_id=1597536494]
 custom_minimum_size = Vector2(512, 256)
 layout_mode = 2
 columns = 4
 
-[node name="CloseButton" type="TextureButton" parent="PanelContainer/VBoxContainer"]
+[node name="CloseButton" type="TextureButton" parent="PanelContainer/VBoxContainer" unique_id=2028225432]
 custom_minimum_size = Vector2(200, 80)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -66,7 +66,7 @@ texture_hover = ExtResource("7_06ryf")
 ignore_texture_size = true
 stretch_mode = 4
 
-[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/CloseButton"]
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/CloseButton" unique_id=1039899621]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

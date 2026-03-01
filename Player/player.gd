@@ -14,6 +14,8 @@ var _look:Vector2 = Vector2.ZERO
 var _attack_direction:Vector3 = Vector3.ZERO
 
 @export var mouse_sensitivity:float = 0.00075
+@export var gamepad_horizontal_sensitivity:float = 1.5
+@export var gamepad_vertical_sensitivity:float = 1.5
 @export var min_boundary:float = -60.0 #degrees
 @export var max_boundary:float = 10.0 #degrees
 @export var animation_decay:float = 20.0
@@ -71,6 +73,12 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
+	# Handle gamepad camera movement
+	var axis:Vector2 = Input.get_vector("camera_left","camera_right","camera_up","camera_down")
+	if axis.length() > 0.2:
+		_look.x = deg_to_rad(-axis.x * gamepad_horizontal_sensitivity)
+		_look.y = deg_to_rad(-axis.y * gamepad_vertical_sensitivity)
+	
 	frame_camera_rotation()
 	
 	# Get the direction of movement
